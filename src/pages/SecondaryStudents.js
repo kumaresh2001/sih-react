@@ -68,8 +68,8 @@ export default function HigherStudents() {
                     aria-label="full width tabs example"
                     centered
                     >
-                    <Tab wrapped label="Professions"  {...a11yProps(0)} />
-                    <Tab wrapped label="Universities"  {...a11yProps(1)} />
+                    <Tab wrapped label="Streams"  {...a11yProps(0)} />
+                    <Tab wrapped label="Professionals "  {...a11yProps(1)} />
                     <Tab wrapped label="Personality Test"  {...a11yProps(2)} />
                     </Tabs>
                 </AppBar>

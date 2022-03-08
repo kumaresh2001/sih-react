@@ -117,7 +117,7 @@ export default function NavBar() {
     <React.Fragment>
 
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="fixed" style={{display:"flex"}}>
+      <AppBar position="static" style={{display:"flex"}}>
         <Toolbar>
           <IconButton
             size="large"

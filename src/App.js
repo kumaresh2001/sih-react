@@ -9,6 +9,7 @@ import {
 } from 'react-router-dom';
 import Home from "./pages/Home";
 import NavBar from "./components/NavBar";
+import HigherStudents from "./pages/HigherStudents";
 
 
 export default function App() {
@@ -16,7 +17,7 @@ export default function App() {
     <Router>
     <Routes>
       <Route path="/" element={<Home />}/>
-      <Route path="/categories" element={<NavBar />}/>
+      <Route path="/higherstudents" element={<HigherStudents />}/>
     </Routes>
 
     </Router>

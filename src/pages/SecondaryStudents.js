@@ -9,7 +9,6 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import NavBar from '../components/NavBar';
 import ComplexGrid from '../components/Cards';
-import Quiz from "../components/Quiz"
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -69,8 +68,8 @@ export default function HigherStudents() {
                     aria-label="full width tabs example"
                     centered
                     >
-                    <Tab wrapped label="Professions"  {...a11yProps(0)} />
-                    <Tab wrapped label="Universities"  {...a11yProps(1)} />
+                    <Tab wrapped label="Streams"  {...a11yProps(0)} />
+                    <Tab wrapped label="Professionals "  {...a11yProps(1)} />
                     <Tab wrapped label="Personality Test"  {...a11yProps(2)} />
                     </Tabs>
                 </AppBar>
@@ -86,7 +85,7 @@ export default function HigherStudents() {
                         <ComplexGrid />
                     </TabPanel>
                     <TabPanel value={value} index={2} dir={theme.direction}>
-                        <Quiz />
+                        <ComplexGrid />
                     </TabPanel>
                 </SwipeableViews>
             </Box>

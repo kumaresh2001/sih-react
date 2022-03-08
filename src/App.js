@@ -9,7 +9,7 @@ import {
 } from 'react-router-dom';
 import Home from "./pages/Home";
 import NavBar from "./components/NavBar";
-import HigherStudents from "./pages/HigherSecondaryStudents";
+import HigherStudents from "./pages/HigherStudents";
 
 
 export default function App() {

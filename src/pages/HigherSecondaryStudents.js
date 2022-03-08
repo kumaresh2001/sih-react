@@ -9,6 +9,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import NavBar from '../components/NavBar';
 import ComplexGrid from '../components/Cards';
+import Quiz from "../components/Quiz"
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -85,7 +86,7 @@ export default function HigherStudents() {
                         <ComplexGrid />
                     </TabPanel>
                     <TabPanel value={value} index={2} dir={theme.direction}>
-                        <ComplexGrid />
+                        <Quiz />
                     </TabPanel>
                 </SwipeableViews>
             </Box>

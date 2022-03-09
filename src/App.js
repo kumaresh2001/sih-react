@@ -11,6 +11,7 @@ import Home from "./pages/Home";
 import NavBar from "./components/NavBar";
 import HigherStudents from "./pages/HigherStudents";
 import SecondaryStudents from "./pages/SecondaryStudents";
+import ParentsPage from "./pages/ParentsPage";
 
 
 export default function App() {
@@ -20,6 +21,8 @@ export default function App() {
       <Route path="/" element={<Home />}/>
       <Route path="/higherstudents" element={<HigherStudents />}/>
       <Route path="/secondarystudents" element={<SecondaryStudents />}/>
+      <Route path="/parentspage" element={<ParentsPage />}/>
+
     </Routes>
 
     </Router>

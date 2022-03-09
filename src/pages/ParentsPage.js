@@ -9,7 +9,6 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import NavBar from '../components/NavBar';
 import ComplexGrid from '../components/Cards';
-import Quiz from "../components/Quiz";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -44,7 +43,7 @@ function a11yProps(index) {
   };
 }
 
-export default function SecondaryStudents() {
+export default function ParentsPage() {
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
 
@@ -69,9 +68,8 @@ export default function SecondaryStudents() {
                     aria-label="full width tabs example"
                     centered
                     >
-                    <Tab wrapped label="Streams"  {...a11yProps(0)} />
-                    <Tab wrapped label="Professionals "  {...a11yProps(1)} />
-                    <Tab wrapped label="Personality Test"  {...a11yProps(2)} />
+                    <Tab wrapped label="Universities"  {...a11yProps(0)} />
+                    <Tab wrapped label="Child's Performance"  {...a11yProps(1)} />
                     </Tabs>
                 </AppBar>
                 <SwipeableViews
@@ -84,9 +82,6 @@ export default function SecondaryStudents() {
                     </TabPanel>
                     <TabPanel value={value} index={1} dir={theme.direction}>
                         <ComplexGrid />
-                    </TabPanel>
-                    <TabPanel value={value} index={2} dir={theme.direction}>
-                        <Quiz />
                     </TabPanel>
                 </SwipeableViews>
             </Box>

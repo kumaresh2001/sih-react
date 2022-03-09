@@ -70,7 +70,10 @@ export default function GridCard(props) {
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
            {props.description}<br />
            <div style={{fontWeight:"bold"}}>
-             Speciality - {props.specialisation}<br />
+             {props.specialisation?
+             <React.Fragment>
+                Speciality - {props.specialisation}<br />
+             </React.Fragment>:""}
             </div>
 
           </Typography>

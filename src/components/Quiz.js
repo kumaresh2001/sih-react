@@ -387,9 +387,14 @@ return(
                                     <TableCell colspan={3} align="right">INACCURATE</TableCell>
                                     <TableCell></TableCell>
                                     <TableCell colspan={3} align="center">NORMAL</TableCell>
+<<<<<<< HEAD
+                                    <TableCell></TableCell>                                 
+                                    <TableCell colspan={3} align="left">INACCURATE</TableCell>
+=======
                                     <TableCell></TableCell>
                                     
                                     <TableCell colspan={3} align="left">ACCURATE</TableCell>
+>>>>>>> 1da4f3d83d170a2adb1fd3dcea119dd4a6a1edf6
                                     
                                 </TableRow>
                                 </TableHead>
@@ -402,6 +407,17 @@ return(
                                             <TableCell align="left">{row}</TableCell>
                                     
                                     <TableCell></TableCell>
+<<<<<<< HEAD
+                                    <TableCell align="left"><input onChange={()=>{this.onInputChange(index,5)}} type="radio" value = "5"/></TableCell>
+                                    <TableCell></TableCell>
+                                    <TableCell align="left"><input onChange={()=>{this.onInputChange(index,4)}} type="radio" value = "4"/></TableCell>
+                                    <TableCell></TableCell>
+                                    <TableCell align="left"><input onChange={()=>{this.onInputChange(index,3)}} type="radio" value = "3"/></TableCell>
+                                    <TableCell></TableCell>
+                                    <TableCell align="left"><input onChange={()=>{this.onInputChange(index,2)}} type="radio" value = "2"/></TableCell>
+                                    <TableCell></TableCell>
+                                    <TableCell align="left"><input onChange={()=>{this.onInputChange(index,1)}} type="radio" value = "1"/></TableCell>
+=======
                                     <TableCell align="left"><Checkbox checked={this.state.checked[index][0]} onChange={(event)=>this.opposite(event,index,0)} /> </TableCell>
                                     <TableCell></TableCell>
                                     <TableCell align="left"><Checkbox  checked={this.state.checked[index][1]} onChange={(event)=>this.opposite(event,index,1)} /></TableCell>
@@ -412,6 +428,7 @@ return(
                                     <TableCell></TableCell>
                                     <TableCell align="left"><Checkbox checked={this.state.checked[index][4]} onChange={(event)=>this.opposite(event,index,4)} /></TableCell>
                                         
+>>>>>>> 1da4f3d83d170a2adb1fd3dcea119dd4a6a1edf6
                                     </TableRow>
                                 
                                 ))}

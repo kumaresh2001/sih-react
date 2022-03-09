@@ -9,6 +9,11 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import {FormControlLabel}  from "@mui/material";
+import {RadioGroup} from "@mui/material";
+import {Radio}  from "@mui/material";
+import {FormControl}  from "@mui/material";
+import { Checkbox } from "@mui/material";
 const fileQuestions = require("../assets/questions.json");
 
 
@@ -76,7 +81,60 @@ class Quiz extends Component{
             catchmsg:"",
             errormsg:"",
             score:0,
+            checked:[
+                [false,false,false,false,false],
+                [false,false,false,false,false],
+                [false,false,false,false,false],
+                [false,false,false,false,false],
+                [false,false,false,false,false],
+                [false,false,false,false,false],
+                [false,false,false,false,false],
+                [false,false,false,false,false],
+                [false,false,false,false,false],
+                [false,false,false,false,false],
+                [false,false,false,false,false],
+                [false,false,false,false,false],
+                [false,false,false,false,false],
+                [false,false,false,false,false],
+                [false,false,false,false,false],
+                [false,false,false,false,false],
+                [false,false,false,false,false],
+                [false,false,false,false,false],
+                [false,false,false,false,false],
+                [false,false,false,false,false],
+                [false,false,false,false,false],
+                [false,false,false,false,false],
+                [false,false,false,false,false],
+                [false,false,false,false,false],
+                [false,false,false,false,false],
+                [false,false,false,false,false],
+                [false,false,false,false,false],
+                [false,false,false,false,false],
+                [false,false,false,false,false],
+                [false,false,false,false,false],
+                [false,false,false,false,false],
+                [false,false,false,false,false],
+                [false,false,false,false,false],
+                [false,false,false,false,false],
+                [false,false,false,false,false],
+                [false,false,false,false,false],
+                [false,false,false,false,false],
+                [false,false,false,false,false],
+                [false,false,false,false,false],
+                [false,false,false,false,false],
+                [false,false,false,false,false],
+                [false,false,false,false,false],
+                [false,false,false,false,false],
+                [false,false,false,false,false],
+                [false,false,false,false,false],
+                [false,false,false,false,false],
+                [false,false,false,false,false],
+                [false,false,false,false,false],
+                [false,false,false,false,false],
+                [false,false,false,false,false],
+            ],
         }
+        this.opposite = this.opposite.bind(this);
         
         
    }
@@ -133,6 +191,20 @@ class Quiz extends Component{
     console.log(this.state.score);
     }
 
+    opposite (event,index1,index2){
+        let checkedarray = this.state.checked;
+        checkedarray[index1][index2] = !checkedarray[index1][index2];
+        if(checkedarray[index1][index2]==true)
+        {
+            for(let i=0;i<5;i++)
+            {
+                if(index2==i)
+                continue;
+                checkedarray[index1][i] = false;
+            }
+        }
+        this.setState({checked:checkedarray});
+    }
 
     
 
@@ -193,19 +265,20 @@ return(
                                     <TableRow
                                     key={index}
                                     >
+                                        
+                                            <TableCell align="left">{row}</TableCell>
                                     
-                                    <TableCell align="left">{row}</TableCell>
-
                                     <TableCell></TableCell>
-                                    <TableCell align="left"><input onChange={()=>{this.onInputChange(index,5)}} type="radio" /></TableCell>
+                                    <TableCell align="left"><Checkbox checked={this.state.checked[index][0]} onChange={(event)=>this.opposite(event,index,0)} /> </TableCell>
                                     <TableCell></TableCell>
-                                    <TableCell align="left"><input onChange={()=>{this.onInputChange(index,4)}} type="radio" /></TableCell>
+                                    <TableCell align="left"><Checkbox  checked={this.state.checked[index][1]} onChange={(event)=>this.opposite(event,index,1)} /></TableCell>
                                     <TableCell></TableCell>
-                                    <TableCell align="left"><input onChange={()=>{this.onInputChange(index,3)}} type="radio" /></TableCell>
+                                    <TableCell align="left"><Checkbox checked={this.state.checked[index][2]} onChange={(event)=>this.opposite(event,index,2)} /></TableCell>
                                     <TableCell></TableCell>
-                                    <TableCell align="left"><input onChange={()=>{this.onInputChange(index,2)}} type="radio" /></TableCell>
+                                    <TableCell align="left"><Checkbox checked={this.state.checked[index][3]} onChange={(event)=>this.opposite(event,index,3)}/></TableCell>
                                     <TableCell></TableCell>
-                                    <TableCell align="left"><input onChange={()=>{this.onInputChange(index,1)}} type="radio" /></TableCell>
+                                    <TableCell align="left"><Checkbox checked={this.state.checked[index][4]} onChange={(event)=>this.opposite(event,index,4)} /></TableCell>
+                                        
                                     </TableRow>
                                 
                                 ))}

@@ -53,7 +53,9 @@ function Carousel() {
   };
 
   return (
-    <Box sx={{ maxWidth: "100%", flexGrow: 1 }}>
+    <React.Fragment>
+      <div style={{backgroundColor:"#D2D7D3",width:"100%",paddingTop:"10px",boxSizing:"border-box"}}>
+      <Box   sx={{marginLeft:"10%",maxWidth: "80%", flexGrow: 1 }}>
       
       <AutoPlaySwipeableViews
         axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
@@ -83,11 +85,13 @@ function Carousel() {
         steps={maxSteps}
         position="static"
         activeStep={activeStep}
+        style={{backgroundColor:"inherit",color:"white"}}
         nextButton={
           <Button
             size="small"
             onClick={handleNext}
             disabled={activeStep === maxSteps - 1}
+            style={{color:"inherit"}}
           >
             Next
             {theme.direction === 'rtl' ? (
@@ -98,7 +102,12 @@ function Carousel() {
           </Button>
         }
         backButton={
-          <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
+          <Button 
+          size="small" 
+          onClick={handleBack} 
+          disabled={activeStep === 0}
+          style={{color:"inherit"}}
+          >
             {theme.direction === 'rtl' ? (
               <KeyboardArrowRight />
             ) : (
@@ -109,6 +118,10 @@ function Carousel() {
         }
       />
     </Box>
+
+      </div>
+
+    </React.Fragment>
   );
 }
 

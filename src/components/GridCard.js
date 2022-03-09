@@ -47,10 +47,7 @@ export default function GridCard() {
           A system independent system for the best career and academic guidance
         </Typography>
       </CardContent>
-      <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
-      </CardActions>
+      
     </Card>
 
     <Modal

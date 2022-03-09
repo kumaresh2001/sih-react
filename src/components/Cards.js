@@ -29,47 +29,47 @@ export default function ComplexGrid() {
       <Grid  container justifyContent="space-evenly" rowSpacing={6} columnSpacing={{ xs: 4, sm: 4, md: 4 }}>
         <Grid  item xs="auto">
           <Item >
-          <GridCard/>
+          <GridCard name="Harvard" image={require("../assets/img1.jpg")} description="This is Harvard" specialisation="Science"/>
           </Item>
         </Grid>
         <Grid item xs="auto">
         <Item>
-          <GridCard />
+          <GridCard  name="Harvard" image={require("../assets/img1.jpg")} description="This is Harvard" specialisation="Science" />
           </Item>
         </Grid>
         <Grid item xs="auto">
         <Item>
-          <GridCard />
-          </Item>
-
-        </Grid>
-        <Grid item xs="auto">
-        <Item>
-          <GridCard />
+          <GridCard   name="Harvard" image={require("../assets/img1.jpg")} description="This is Harvard" specialisation="Science"/>
           </Item>
 
         </Grid>
         <Grid item xs="auto">
         <Item>
-          <GridCard />
+          <GridCard  name="Harvard" image={require("../assets/img1.jpg")} description="This is Harvard" specialisation="Science" />
           </Item>
 
         </Grid>
         <Grid item xs="auto">
         <Item>
-          <GridCard />
+          <GridCard  name="Harvard" image={require("../assets/img1.jpg")} description="This is Harvard" specialisation="Science" />
           </Item>
 
         </Grid>
         <Grid item xs="auto">
         <Item>
-          <GridCard />
+          <GridCard  name="Harvard" image={require("../assets/img1.jpg")} description="This is Harvard" specialisation="Science" />
           </Item>
 
         </Grid>
         <Grid item xs="auto">
         <Item>
-          <GridCard />
+          <GridCard  name="Harvard" image={require("../assets/img1.jpg")} description="This is Harvard" specialisation="Science" />
+          </Item>
+
+        </Grid>
+        <Grid item xs="auto">
+        <Item>
+          <GridCard  name="Harvard" image={require("../assets/img1.jpg")} description="This is Harvard" specialisation="Science" />
           </Item>
 
         </Grid>

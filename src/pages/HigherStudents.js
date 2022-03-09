@@ -10,6 +10,7 @@ import Box from '@mui/material/Box';
 import NavBar from '../components/NavBar';
 import ComplexGrid from '../components/Cards';
 import Quiz from "../components/Quiz"
+import { Navigate } from 'react-router-dom';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -43,6 +44,13 @@ function a11yProps(index) {
     'aria-controls': `full-width-tabpanel-${index}`,
   };
 }
+function redirect()
+{
+  if(!localStorage.username)
+  {
+    Navigate("/")
+  }
+}
 
 export default function HigherStudents() {
   const theme = useTheme();
@@ -68,7 +76,7 @@ export default function HigherStudents() {
 
   return (
       <React.Fragment>
-          <NavBar />
+           <NavBar />
             <Box sx={{ width: "100%" }}>
                 <AppBar color="transparent" boxShadow="none" position="static">
                     <Tabs

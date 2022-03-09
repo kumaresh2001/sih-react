@@ -12,7 +12,7 @@ import NavBar from "./components/NavBar";
 import HigherStudents from "./pages/HigherStudents";
 import SecondaryStudents from "./pages/SecondaryStudents";
 import ParentsPage from "./pages/ParentsPage";
-
+import ApiTest from "./components/ApiTest";
 
 export default function App() {
   return (
@@ -22,6 +22,7 @@ export default function App() {
       <Route path="/higherstudents" element={<HigherStudents />}/>
       <Route path="/secondarystudents" element={<SecondaryStudents />}/>
       <Route path="/parentspage" element={<ParentsPage />}/>
+      <Route path="/apitest" element={<ApiTest />} />
 
     </Routes>
 

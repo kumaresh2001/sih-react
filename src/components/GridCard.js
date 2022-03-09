@@ -9,7 +9,7 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { Box } from '@mui/system';
 
-export default function GridCard() {
+export default function GridCard(props) {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -36,15 +36,15 @@ export default function GridCard() {
       <CardMedia
         component="img"
         height="140"
-        image={require("../assets/img1.jpg")}
+        image={props.image}
         alt="image"
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          Meraki
+          {props.name}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          A system independent system for the best career and academic guidance
+          {props.description}
         </Typography>
       </CardContent>
       
@@ -58,16 +58,15 @@ export default function GridCard() {
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            Institute Name
+            {props.name}
           </Typography>
           <Paper>
-            <img style={{margin:"20px",width:"50vw"}}  src={require("../assets/img5.jpg")} />
+            <img style={{margin:"20px",width:"50vw"}}  src={require("../assets/img1.jpg")} />
           </Paper>
             
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            This is the description about the college<br />
-            Location: This is location of college<br />
-            Qualification: This is qualification for this college<br />
+           {props.description}<br />
+           {props.specialisation}<br />
 
           </Typography>
         </Box>

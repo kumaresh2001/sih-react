@@ -1,0 +1,7 @@
+{
+    "profession":["engineer","artist", "lawyer", "archaeologist", "entrepreneur", "psychiatrist",
+        "writer", "company_secretary", "scientist", "designer", "hospitality",
+        "R&D", "doctor", "mass_media", "Human_Resource", "Civil_service"],
+    "stream":["engineering_graphics", "language", "physics", "chemistry", "biology",
+        "math", "business_studies", "marketing"]
+}

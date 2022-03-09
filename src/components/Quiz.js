@@ -19,10 +19,11 @@ import { Box } from "@mui/system";
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
-
+import axios from "axios";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Checkbox } from "@mui/material";
 const fileQuestions = require("../assets/questions.json");
+const QuizResponse = require("../assets/QuizResults.json");
 
 
 
@@ -99,7 +100,8 @@ class Quiz extends Component{
                 top: '50%',
                 left: '50%',
                 transform: 'translate(-50%, -50%)',
-                
+                stream:[],
+                profession:[],
                 backgroundColor:"white",
                 border: '1px solid #000',
                 borderRadius:"10px",
@@ -112,56 +114,56 @@ class Quiz extends Component{
             score:0,
             showModal:false,
             checked:[
-                [true,false,false,false,false],
-                [false,true,false,false,false],
-                [false,false,false,true,false],
-                [false,true,false,false,false],
-                [false,false,false,true,false],
-                [false,true,false,false,false],
                 [false,false,true,false,false],
-                [false,true,false,false,false],
-                [false,false,false,true,false],
-                [false,true,false,false,false],
-                [false,false,false,true,false],
-                [false,false,true,false,false],
-                [false,true,false,false,false],
                 [true,false,false,false,false],
-                [true,false,false,false,false],
-                [false,true,false,false,false],
-                [false,false,true,false,false],
-                [false,false,false,true,false],
                 [false,false,false,false,true],
-                [false,false,false,true,false],
-                [false,false,true,false,false],
-                [false,true,false,false,false],
+                [false,false,false,false,true],
+                [true,false,false,false,false],
+                [false,false,false,false,true],
+                [true,false,false,false,false],
+                [false,false,false,false,true],
+                [true,false,false,false,false],
+                [false,false,false,false,true],
                 [true,false,false,false,false],
                 [true,false,false,false,false],
-                [false,false,true,false,false],
-                [false,false,true,false,false],
-                [false,true,false,false,false],
+                [false,false,false,false,true],
                 [true,false,false,false,false],
-                [false,false,true,false,false],
-                [false,false,false,true,false],
-                [false,false,true,false,false],
-                [false,false,false,true,false],
-                [false,false,true,false,false],
-                [false,false,true,false,false],
-                [false,true,false,false,false],
-                [false,false,false,true,false],
-                [false,true,false,false,false],
-                [false,true,false,false,false],
-                [false,false,true,false,false],
-                [false,false,false,true,false],
-                [false,false,true,false,false],
+                [false,false,false,false,true],
                 [true,false,false,false,false],
-                [false,true,false,false,false],
-                [false,false,false,true,false],
-                [false,false,true,false,false],
-                [false,true,false,false,false],
                 [true,false,false,false,false],
-                [false,true,false,false,false],
-                [false,false,false,true,false],
-                [false,false,true,false,false],
+                [true,false,false,false,false],
+                [true,false,false,false,false],
+                [true,false,false,false,false],
+                [true,false,false,false,false],
+                [true,false,false,false,false],
+                [false,false,false,false,true],
+                [true,false,false,false,false],
+                [false,false,false,false,true],
+                [true,false,false,false,false],
+                [false,false,false,false,true],
+                [true,false,false,false,false],
+                [false,false,false,false,true],
+                [false,false,false,false,true],
+                [false,false,false,false,true],
+                [false,false,false,false,true],
+                [true,false,false,false,false],
+                [false,false,false,false,true],
+                [true,false,false,false,false],
+                [false,false,false,false,true],
+                [true,false,false,false,false],
+                [true,false,false,false,false],
+                [false,false,false,false,true],
+                [false,false,false,false,true],
+                [false,false,false,false,true],
+                [true,false,false,false,false],
+                [false,false,false,false,true],
+                [true,false,false,false,false],
+                [false,false,false,false,true],
+                [true,false,false,false,false],
+                [false,false,false,false,true],
+                [false,false,false,false,true],
+                [false,false,false,false,true],
+                [false,false,false,false,true],
             ],
         }
         this.opposite = this.opposite.bind(this);
@@ -207,7 +209,7 @@ class Quiz extends Component{
         }
         let temp;
         temp = (8 + answers[40] - answers[41] + answers[42] - answers[43] + answers[44] - answers[45] + answers[46] + answers[47] + answers[48] + answers[49] )
-        console.log(temp)
+        console.log(answers)
         this.setState({o : temp},()=>{
             if(temp<9)
             {
@@ -299,7 +301,41 @@ class Quiz extends Component{
             }
         })
 
-        console.log(answers)
+        var response;
+        axios({
+            method: 'post',
+            url: "http://127.0.0.1:5000/",
+            headers: {}, 
+            data: {
+              answers: {answers}, // This is the body part
+            }
+          }).then(res=>{
+                response = res.data;
+                console.log(res.data);
+                let tempProfession = response.profession;
+                console.log(tempProfession[0][1])
+                for(let i=0;i<tempProfession[0].length;i++)
+                {
+                    if(tempProfession[0][i]==true)
+                    {
+                        let tempState = this.state.profession;
+                        if(tempState==undefined)
+                        {
+                            tempState=[];
+                        }
+                        let tempString =QuizResponse.profession[i];
+                        tempState.push(tempString);
+                        // tempState.push(QuizResponse.profession[i])
+                        this.setState({profession:tempState},()=>{console.log(this.state.profession)})
+                    }
+                }
+
+                 
+
+            });
+            
+       
+          
          //   console.log(this.state.Quiz_Set)
     //      let list = this.state.Quiz_Set ;
     //      let count = 0;

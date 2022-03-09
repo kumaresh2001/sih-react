@@ -193,8 +193,6 @@ class Quiz extends Component{
     }
 
     onSubmit = () =>{
-<<<<<<< HEAD
-=======
         let answers = new Array(50);
         for(let i=0;i<50;i++)
         {
@@ -292,7 +290,6 @@ class Quiz extends Component{
             this.setState({ns:"Great"})
         }
         console.log(answers)
->>>>>>> 728aabfec989b8071bdc95a0d7ede8f3d848ea0e
          //   console.log(this.state.Quiz_Set)
     //      let list = this.state.Quiz_Set ;
     //      let count = 0;

@@ -162,6 +162,24 @@ class Quiz extends Component{
     }
 
     onSubmit = () =>{
+        let answers = new Array(50);
+        for(let i=0;i<50;i++)
+        {
+            answers[i] =0;
+            for(let j=0;j<5;j++)
+            {
+                if(this.state.checked[i][j])
+                {
+                    answers[i] = j+1;
+                }
+            }
+            if(answers[i]==0)
+            {
+                alert("Fill all questions");
+                return;
+            }
+        }
+        console.log(answers)
          //   console.log(this.state.Quiz_Set)
     //      let list = this.state.Quiz_Set ;
     //      let count = 0;

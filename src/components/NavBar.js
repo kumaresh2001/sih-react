@@ -41,6 +41,7 @@ export default function NavBar() {
     const routeChange = (path) =>{ 
       navigate(path);
     }
+    const [signin,setSignin] = useState(false);
 
     const onChangeValue = (event)=>{
       setFirstSelectedValue(event.target.value);
@@ -147,9 +148,14 @@ export default function NavBar() {
           <Typography  style={{textAlign:"center"}} variant="h4" component="div" sx={{ flexGrow: 6 }}>
             Meraki
           </Typography>
-          
-          <Button color="inherit" style={{fontSize:"0.8rem"}} onClick={setOpen}>Login</Button>
-          <Button color="inherit" style={{fontSize:"0.8rem"}} onClick={onRegisterOpen}>Register</Button>
+          {
+            signin==false?<React.Fragment>
+            <Button color="inherit" style={{fontSize:"0.8rem"}} onClick={setOpen}>Login</Button>
+            <Button color="inherit" style={{fontSize:"0.8rem"}} onClick={onRegisterOpen}>Register</Button>
+            
+            </React.Fragment>
+            :<AccountCircleIcon />
+          }
         </Toolbar>
       </AppBar>
         
@@ -167,6 +173,7 @@ export default function NavBar() {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
+        
           <Box style={style}>
           <Typography  id="modal-modal-title" variant="h5" component="h2">
             Login

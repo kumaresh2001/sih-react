@@ -182,8 +182,7 @@ return(
                                     <TableCell colspan={3} align="right">ACCURATE</TableCell>
                                     <TableCell></TableCell>
                                     <TableCell colspan={3} align="center">NORMAL</TableCell>
-                                    <TableCell></TableCell>
-                                    
+                                    <TableCell></TableCell>                                 
                                     <TableCell colspan={3} align="left">INACCURATE</TableCell>
                                     
                                 </TableRow>
@@ -197,15 +196,15 @@ return(
                                     <TableCell align="left">{row}</TableCell>
 
                                     <TableCell></TableCell>
-                                    <TableCell align="left"><input onChange={()=>{this.onInputChange(index,5)}} type="radio" /></TableCell>
+                                    <TableCell align="left"><input onChange={()=>{this.onInputChange(index,5)}} type="radio" value = "5"/></TableCell>
                                     <TableCell></TableCell>
-                                    <TableCell align="left"><input onChange={()=>{this.onInputChange(index,4)}} type="radio" /></TableCell>
+                                    <TableCell align="left"><input onChange={()=>{this.onInputChange(index,4)}} type="radio" value = "4"/></TableCell>
                                     <TableCell></TableCell>
-                                    <TableCell align="left"><input onChange={()=>{this.onInputChange(index,3)}} type="radio" /></TableCell>
+                                    <TableCell align="left"><input onChange={()=>{this.onInputChange(index,3)}} type="radio" value = "3"/></TableCell>
                                     <TableCell></TableCell>
-                                    <TableCell align="left"><input onChange={()=>{this.onInputChange(index,2)}} type="radio" /></TableCell>
+                                    <TableCell align="left"><input onChange={()=>{this.onInputChange(index,2)}} type="radio" value = "2"/></TableCell>
                                     <TableCell></TableCell>
-                                    <TableCell align="left"><input onChange={()=>{this.onInputChange(index,1)}} type="radio" /></TableCell>
+                                    <TableCell align="left"><input onChange={()=>{this.onInputChange(index,1)}} type="radio" value = "1"/></TableCell>
                                     </TableRow>
                                 
                                 ))}

@@ -157,6 +157,7 @@ export default function NavBar() {
             :<AccountCircleIcon />
           }
         </Toolbar>
+        {/*hi */}
       </AppBar>
         
         <Drawer

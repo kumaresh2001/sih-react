@@ -16,6 +16,7 @@ export default function GridCard(props) {
 
     const style = {
         position: 'absolute',
+        height: 'max-content',
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
@@ -61,7 +62,7 @@ export default function GridCard(props) {
             {props.name}
           </Typography>
           <Paper>
-            <img style={{margin:"20px",width:"50vw"}}  src={require("../assets/img1.jpg")} />
+            <img style={{margin:"20px",width:"50vw"}}  src={props.image} />
           </Paper>
             
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>

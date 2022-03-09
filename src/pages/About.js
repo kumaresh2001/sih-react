@@ -1,21 +1,20 @@
 import React, { Component } from 'react';
 import NavBar from "../components/NavBar";
-import Carousel from '../components/Carousel';
-import ComplexGrid from '../components/Cards';
+import Box from "../components/Box";
 
 
-export class Home extends Component {
+export class About extends Component {
   render() {
     return (
         <React.Fragment>
 
             <NavBar />
-            <Carousel />
-            <ComplexGrid />
+            <Box />
+
         
         </React.Fragment>
     )
   }
 }
 
-export default Home
+export default About

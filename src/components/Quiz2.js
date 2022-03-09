@@ -3,6 +3,7 @@ import Button from '@mui/material/Button';
 import React from "react";
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
+import Modal from '@mui/material/Modal';
 
 
 const Quiz_Set = [

@@ -9,12 +9,21 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import Modal from '@mui/material/Modal';
+import Typography from '@mui/material/Typography';
 import {FormControlLabel}  from "@mui/material";
 import {RadioGroup} from "@mui/material";
 import {Radio}  from "@mui/material";
 import {FormControl}  from "@mui/material";
+import { Box } from "@mui/system";
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Checkbox } from "@mui/material";
 const fileQuestions = require("../assets/questions.json");
+
 
 
 const Quiz_Set = [
@@ -80,66 +89,88 @@ class Quiz extends Component{
             open:false,
             catchmsg:"",
             errormsg:"",
+            o:0,os:"",
+            c:0,cs:"",
+            e:0,es:"",
+            a:0,as:"",
+            n:0,ns:"",
+            style : {
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                
+                backgroundColor:"white",
+                border: '1px solid #000',
+                borderRadius:"10px",
+                paddingTop:"30px",
+                paddingBottom:"30px",
+                textAlign:"center",
+                boxShadow: 24,
+                p: 4,
+              },
             score:0,
+            showModal:false,
             checked:[
-                [false,false,false,false,false],
-                [false,false,false,false,false],
-                [false,false,false,false,false],
-                [false,false,false,false,false],
-                [false,false,false,false,false],
-                [false,false,false,false,false],
-                [false,false,false,false,false],
-                [false,false,false,false,false],
-                [false,false,false,false,false],
-                [false,false,false,false,false],
-                [false,false,false,false,false],
-                [false,false,false,false,false],
-                [false,false,false,false,false],
-                [false,false,false,false,false],
-                [false,false,false,false,false],
-                [false,false,false,false,false],
-                [false,false,false,false,false],
-                [false,false,false,false,false],
-                [false,false,false,false,false],
-                [false,false,false,false,false],
-                [false,false,false,false,false],
-                [false,false,false,false,false],
-                [false,false,false,false,false],
-                [false,false,false,false,false],
-                [false,false,false,false,false],
-                [false,false,false,false,false],
-                [false,false,false,false,false],
-                [false,false,false,false,false],
-                [false,false,false,false,false],
-                [false,false,false,false,false],
-                [false,false,false,false,false],
-                [false,false,false,false,false],
-                [false,false,false,false,false],
-                [false,false,false,false,false],
-                [false,false,false,false,false],
-                [false,false,false,false,false],
-                [false,false,false,false,false],
-                [false,false,false,false,false],
-                [false,false,false,false,false],
-                [false,false,false,false,false],
-                [false,false,false,false,false],
-                [false,false,false,false,false],
-                [false,false,false,false,false],
-                [false,false,false,false,false],
-                [false,false,false,false,false],
-                [false,false,false,false,false],
-                [false,false,false,false,false],
-                [false,false,false,false,false],
-                [false,false,false,false,false],
-                [false,false,false,false,false],
+                [true,false,false,false,false],
+                [false,true,false,false,false],
+                [false,false,false,true,false],
+                [false,true,false,false,false],
+                [false,false,false,true,false],
+                [false,true,false,false,false],
+                [false,false,true,false,false],
+                [false,true,false,false,false],
+                [false,false,false,true,false],
+                [false,true,false,false,false],
+                [false,false,false,true,false],
+                [false,false,true,false,false],
+                [false,true,false,false,false],
+                [true,false,false,false,false],
+                [true,false,false,false,false],
+                [false,true,false,false,false],
+                [false,false,true,false,false],
+                [false,false,false,true,false],
+                [false,false,false,false,true],
+                [false,false,false,true,false],
+                [false,false,true,false,false],
+                [false,true,false,false,false],
+                [true,false,false,false,false],
+                [true,false,false,false,false],
+                [false,false,true,false,false],
+                [false,false,true,false,false],
+                [false,true,false,false,false],
+                [true,false,false,false,false],
+                [false,false,true,false,false],
+                [false,false,false,true,false],
+                [false,false,true,false,false],
+                [false,false,false,true,false],
+                [false,false,true,false,false],
+                [false,false,true,false,false],
+                [false,true,false,false,false],
+                [false,false,false,true,false],
+                [false,true,false,false,false],
+                [false,true,false,false,false],
+                [false,false,true,false,false],
+                [false,false,false,true,false],
+                [false,false,true,false,false],
+                [true,false,false,false,false],
+                [false,true,false,false,false],
+                [false,false,false,true,false],
+                [false,false,true,false,false],
+                [false,true,false,false,false],
+                [true,false,false,false,false],
+                [false,true,false,false,false],
+                [false,false,false,true,false],
+                [false,false,true,false,false],
             ],
         }
         this.opposite = this.opposite.bind(this);
+        this.handleClose = this.handleClose.bind(this);
         
         
    }
 
-    
+   
 
     onInputChange = (index,ans) => {
 
@@ -162,6 +193,106 @@ class Quiz extends Component{
     }
 
     onSubmit = () =>{
+<<<<<<< HEAD
+=======
+        let answers = new Array(50);
+        for(let i=0;i<50;i++)
+        {
+            answers[i] = 0;
+            for(let j=0;j<5;j++)
+            {
+                if(this.state.checked==true)
+                {
+                    answers[i] = j+1;
+                }
+            }
+        }
+        let temp;
+        temp = (8 + answers[40] - answers[41] + answers[42] - answers[43] + answers[44] - answers[45] + answers[46] + answers[47] + answers[48] + answers[49] )
+        console.log(temp)
+        this.setState({o : temp})
+        if(temp<9)
+        {
+            this.setState({os:"Poor"})
+        }
+        else if(temp>=10&&temp<=19)
+        {
+            this.setState({os:"Average"})
+        }
+        else if(temp>=20&&temp<=29)
+        {
+            this.setState({os:"Fair"})
+        }
+        else{
+            this.setState({os:"Great"})
+        }
+
+        this.setState({c :(14 + answers[30] - answers[31] + answers[32] - answers[33] + answers[34] - answers[35] - answers[36] - answers[37] + answers[38] + answers[39] )})
+        if(this.state.c<9)
+        {
+            this.setState({cs:"Poor"})
+        }
+        else if(this.state.c>=10&&this.state.c<=19)
+        {
+            this.setState({cs:"Average"})
+        }
+        else if(this.state.c>=20&&this.state.c<=29)
+        {
+            this.setState({cs:"Fair"})
+        }
+        else{
+            this.setState({cs:"Great"})
+        }
+        this.setState({e : (20 + answers[0] - answers[1] + answers[2] - answers[3] + answers[4] - answers[5] + answers[6] - answers[7] + answers[8] - answers[9])})
+        if(this.state.e<9)
+        {
+            this.setState({es:"Poor"})
+        }
+        else if(this.state.e>=10&&this.state.e<=19)
+        {
+            this.setState({es:"Average"})
+        }
+        else if(this.state.e>=20&&this.state.c<=29)
+        {
+            this.setState({es:"Fair"})
+        }
+        else{
+            this.setState({es:"Great"})
+        }
+        this.setState({a : (14 - answers[20] + answers[21] - answers[22] + answers[23] - answers[24] + answers[25] - answers[26] + answers[27] + answers[28] + answers[29])})
+        if(this.state.a<9)
+        {
+            this.setState({as:"Poor"})
+        }
+        else if(this.state.a>=10&&this.state.a<=19)
+        {
+            this.setState({as:"Average"})
+        }
+        else if(this.state.a>=20&&this.state.a<=29)
+        {
+            this.setState({as:"Fair"})
+        }
+        else{
+            this.setState({as:"Great"})
+        }
+        this.setState({n : (38 - answers[10] + answers[11] - answers[12] + answers[13] - answers[14] - answers[15] - answers[16] - answers[17] - answers[18] - answers[19])})
+        if(this.state.n<9)
+        {
+            this.setState({ns:"Poor"})
+        }
+        else if(this.state.n>=10&&this.state.n<=19)
+        {
+            this.setState({ns:"Average"})
+        }
+        else if(this.state.n>=20&&this.state.n<=29)
+        {
+            this.setState({ns:"Fair"})
+        }
+        else{
+            this.setState({ns:"Great"})
+        }
+        console.log(answers)
+>>>>>>> 728aabfec989b8071bdc95a0d7ede8f3d848ea0e
          //   console.log(this.state.Quiz_Set)
     //      let list = this.state.Quiz_Set ;
     //      let count = 0;
@@ -189,6 +320,11 @@ class Quiz extends Component{
     //        this.setState({booleanonsubmit:true,Total:count})
     //    }
     console.log(this.state.score);
+    this.setState({showModal:true})
+    }
+    handleClose()
+    {
+        this.setState({showModal:false})
     }
 
     opposite (event,index1,index2){
@@ -300,7 +436,95 @@ return(
             </div>
            
         </div>
-       
+
+        <Modal
+        open={this.state.showModal}
+        onClose={this.handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+        >
+        <Box sx={this.state.style}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            Your Score is Validated
+          </Typography>
+          <Paper>
+            Score<br />
+            <Accordion>
+                <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+                >
+                <Typography> O - openness - {this.state.o} - {this.state.os}</Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                <Typography>
+                This trait features characteristics such as imagination and insight.1﻿ People who are high in this trait also tend to have a broad range of interests. They are curious about the world and other people and eager to learn new things and enjoy new experiences.
+                </Typography>
+                </AccordionDetails>
+            </Accordion>
+            <Accordion>
+                <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel2a-content"
+                id="panel2a-header"
+                >
+                <Typography> C - conscientousness -{this.state.c} - {this.state.cs}</Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                <Typography>
+                Standard features of this dimension include high levels of thoughtfulness, good impulse control, and goal-directed behaviors.1﻿ Highly conscientious people tend to be organized and mindful of details.
+                </Typography>
+                </AccordionDetails>
+      </Accordion>
+      <Accordion>
+                <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+                >
+                <Typography>  E - extroversion - {this.state.e} - {this.state.es}</Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                <Typography>
+                Extraversion (or extroversion) is characterized by excitability, sociability, talkativeness, assertiveness, and high amounts of emotional expressiveness.
+                </Typography>
+                </AccordionDetails>
+            </Accordion>
+            <Accordion>
+                <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+                >
+                <Typography>  A - agreeableness - {this.state.a} - {this.state.as}</Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                <Typography>
+                This personality dimension includes attributes such as trust, altruism, kindness, affection, and other prosocial behaviors.
+                </Typography>
+                </AccordionDetails>
+            </Accordion>
+            <Accordion>
+                <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+                >
+                <Typography>   N - neuroticism - {this.state.n} - {this.state.ns}</Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                <Typography>
+                Neuroticism is a trait characterized by sadness, moodiness, and emotional instability.
+                </Typography>
+                </AccordionDetails>
+            </Accordion>
+            
+          </Paper>
+            
+         
+        </Box>
+      </Modal>
         
     </React.Fragment>
  

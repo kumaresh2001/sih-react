@@ -10,6 +10,8 @@ import Box from '@mui/material/Box';
 import NavBar from '../components/NavBar';
 import ComplexGrid from '../components/Cards';
 import Quiz from "../components/Quiz";
+import Footer from '../components/Footer';
+
 
 
 function TabPanel(props) {
@@ -91,6 +93,7 @@ export default function SecondaryStudents() {
                     </TabPanel>
                 </SwipeableViews>
             </Box>
+            <Footer />
       </React.Fragment>
 
     

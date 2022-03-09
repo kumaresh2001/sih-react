@@ -12,6 +12,8 @@ import ComplexGrid from '../components/Cards';
 import Quiz from "../components/Quiz"
 import { Navigate } from 'react-router-dom';
 import DomesticCards from "../components/DomesticCards"
+import Footer from '../components/Footer';
+
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -88,8 +90,8 @@ export default function HigherStudents() {
                     aria-label="full width tabs example"
                     centered
                     >
-                    <Tab wrapped label="Universities"  {...a11yProps(0)} />
-                    <Tab wrapped label="Professions"  {...a11yProps(1)} />
+                    <Tab wrapped label="Professions"  {...a11yProps(0)} />
+                    <Tab wrapped label="Universities"  {...a11yProps(1)} />
                     <Tab wrapped label="Personality Test"  {...a11yProps(2)} />
                     </Tabs>
                 </AppBar>
@@ -131,14 +133,16 @@ export default function HigherStudents() {
                       </TabPanel>
 
                     </SwipeableViews>
-                    
+
                     </TabPanel>
                     <TabPanel value={value} index={2} dir={theme.direction}>
                         <Quiz />
                     </TabPanel>
                 </SwipeableViews>
             </Box>
+            <Footer />
       </React.Fragment>
+  
 
     
   );

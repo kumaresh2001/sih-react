@@ -9,6 +9,8 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import NavBar from '../components/NavBar';
 import ComplexGrid from '../components/Cards';
+import Footer from '../components/Footer';
+
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -85,6 +87,7 @@ export default function ParentsPage() {
                     </TabPanel>
                 </SwipeableViews>
             </Box>
+            <Footer />
       </React.Fragment>
 
     

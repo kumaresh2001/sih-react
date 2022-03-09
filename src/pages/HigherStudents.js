@@ -11,6 +11,7 @@ import NavBar from '../components/NavBar';
 import ComplexGrid from '../components/Cards';
 import Quiz from "../components/Quiz"
 import { Navigate } from 'react-router-dom';
+import DomesticCards from "../components/DomesticCards"
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -123,7 +124,7 @@ export default function HigherStudents() {
                     >
 
                       <TabPanel value={value2} index={0} dir={theme.direction}>
-                          <ComplexGrid />
+                          <DomesticCards />
                       </TabPanel>
                       <TabPanel value={value2} index={1} dir={theme.direction}>
                           <ComplexGrid />

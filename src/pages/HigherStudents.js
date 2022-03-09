@@ -12,6 +12,7 @@ import ComplexGrid from '../components/Cards';
 import Quiz from "../components/Quiz"
 import { Navigate } from 'react-router-dom';
 import DomesticCards from "../components/DomesticCards"
+import Professions from "../components/Professions"
 import Footer from '../components/Footer';
 
 
@@ -101,7 +102,7 @@ export default function HigherStudents() {
                     onChangeIndex={handleChangeIndex}
                 >
                     <TabPanel value={value} index={0} dir={theme.direction}>
-                        <ComplexGrid />
+                        <Professions />
                     </TabPanel>
                   <TabPanel value={value} index={1} dir={theme.direction}>
                         

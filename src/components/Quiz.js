@@ -251,12 +251,12 @@ return(
                                 <TableRow>
                                     <TableCell align="center">QUESTION</TableCell>
                                  
-                                    <TableCell colspan={3} align="right">ACCURATE</TableCell>
+                                    <TableCell colspan={3} align="right">INACCURATE</TableCell>
                                     <TableCell></TableCell>
                                     <TableCell colspan={3} align="center">NORMAL</TableCell>
                                     <TableCell></TableCell>
                                     
-                                    <TableCell colspan={3} align="left">INACCURATE</TableCell>
+                                    <TableCell colspan={3} align="left">ACCURATE</TableCell>
                                     
                                 </TableRow>
                                 </TableHead>

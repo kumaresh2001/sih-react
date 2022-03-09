@@ -23,7 +23,11 @@ export default function App() {
       <Route path="/higherstudents" element={<HigherStudents />}/>
       <Route path="/secondarystudents" element={<SecondaryStudents />}/>
       <Route path="/parentspage" element={<ParentsPage />}/>
+
       <Route path="/about" element={<About />}/>
+
+      {/* <Route path="/about" element={<About />} /> */}
+
       <Route path="/apitest" element={<ApiTest />} />
 
     </Routes>

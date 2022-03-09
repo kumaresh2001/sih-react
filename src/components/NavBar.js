@@ -94,7 +94,7 @@ export default function NavBar(props) {
                 <ListItemText primary={"Home"} />
               </ListItem>
 
-            <ListItem style={{marginTop:"10px"}} button key={"Professions"}>
+            <ListItem style={{marginTop:"10px"}} button onClick={()=>{navigate("/professions")}} key={"Professions"}>
                 <ListItemIcon>
                     <WorkIcon />
                 </ListItemIcon>

@@ -8,9 +8,11 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import NavBar from '../components/NavBar';
+import Streams from '../components/Streams';
 import ComplexGrid from '../components/Cards';
 import Quiz from "../components/Quiz";
 import Footer from '../components/Footer';
+import Professions from '../components/Professions';
 
 
 
@@ -83,10 +85,12 @@ export default function SecondaryStudents() {
                     onChangeIndex={handleChangeIndex}
                 >
                     <TabPanel value={value} index={0} dir={theme.direction}>
-                        <ComplexGrid />
+                        <p style= {{width:"100%", textAlign:"center", fontWeight:"500", fontSize:"2rem"}}>STREAMS</p>                      
+                        <Streams />
                     </TabPanel>
                     <TabPanel value={value} index={1} dir={theme.direction}>
-                        <ComplexGrid />
+                       <p style= {{width:"100%", textAlign:"center", fontWeight:"500", fontSize:"2rem"}}>PROFESSIONS</p>                      
+                        <Professions />
                     </TabPanel>
                     <TabPanel value={value} index={2} dir={theme.direction}>
                         <Quiz />

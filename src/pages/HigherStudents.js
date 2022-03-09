@@ -102,6 +102,8 @@ export default function HigherStudents() {
                     onChangeIndex={handleChangeIndex}
                 >
                     <TabPanel value={value} index={0} dir={theme.direction}>
+                    <p style= {{width:"100%", textAlign:"center", fontWeight:"500", fontSize:"2rem"}}>PROFESSIONS</p>
+
                         <Professions />
                     </TabPanel>
                   <TabPanel value={value} index={1} dir={theme.direction}>
@@ -127,9 +129,13 @@ export default function HigherStudents() {
                     >
 
                       <TabPanel value={value2} index={0} dir={theme.direction}>
+                      <p style= {{width:"100%", textAlign:"center", fontWeight:"500", fontSize:"2rem"}}>DOMESTIC UNIVERSITIES</p>
+
                           <DomesticCards />
                       </TabPanel>
                       <TabPanel value={value2} index={1} dir={theme.direction}>
+                      <p style= {{width:"100%", textAlign:"center", fontWeight:"500", fontSize:"2rem"}}>ABROAD UNIVERSITIES</p>
+
                           <ComplexGrid />
                       </TabPanel>
 

@@ -31,7 +31,7 @@ import FormLabel from '@mui/material/FormLabel';
 export default function NavBar() {
     const [state,setState] = useState(false);
     const [open,setOpen] = useState(false);
-
+    const [firstSelectedValue,setFirstSelectedValue] = useState("");
     const [registerOpen,setRegisterOpen] = useState(false);
     const onRegisterOpen = () =>setRegisterOpen(true);
     const onRegisterClose = () =>setRegisterOpen(false);
@@ -42,6 +42,9 @@ export default function NavBar() {
       navigate(path);
     }
 
+    const onChangeValue = (event)=>{
+      setFirstSelectedValue(event.target.value);
+    }
     const style = {
         position: 'absolute',
         top: '50%',
@@ -223,12 +226,13 @@ export default function NavBar() {
             aria-labelledby="demo-row-radio-buttons-group-label"
             name="row-radio-buttons-group"
           >
-            <FormControlLabel value="student" control={<Radio />} label="Student" />
-            <FormControlLabel value="parent" control={<Radio />} label="Parent" />
+            <FormControlLabel  onChange={onChangeValue} value="student" control={<Radio />} label="Student" />
+            <FormControlLabel  onChange={onChangeValue} value="parent" control={<Radio />} label="Parent" />
             
           </RadioGroup>
         
-          <RadioGroup
+          {
+            firstSelectedValue=="student"? <RadioGroup
             row
             aria-labelledby="demo-row-radio-buttons-group-label"
             name="row-radio-buttons-group"
@@ -237,7 +241,13 @@ export default function NavBar() {
             &emsp;&emsp;
             <FormControlLabel value="parent" control={<Radio />} label="11/12" />
             
-          </RadioGroup>
+          </RadioGroup>:""
+          }
+
+          {
+            firstSelectedValue=="parent"?<TextField  style={{marginTop:"20px",marginBottom:"20px"}} id="outlined-basic" label="Student Username" variant="outlined" />:""
+          }
+         
 
 
         </FormControl>

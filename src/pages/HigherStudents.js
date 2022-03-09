@@ -47,6 +47,7 @@ function a11yProps(index) {
 export default function HigherStudents() {
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
+  const [value2,setValue2] = React.useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -55,6 +56,15 @@ export default function HigherStudents() {
   const handleChangeIndex = (index) => {
     setValue(index);
   };
+
+  const handleNewChange = (event,newValue) =>{
+    setValue2(newValue);
+  }
+
+  const handleNewChangeIndex = (index) => {
+    setValue2(index);
+  };
+
 
   return (
       <React.Fragment>
@@ -86,8 +96,8 @@ export default function HigherStudents() {
                         
                     <AppBar color="transparent" boxShadow="none" position="static">
                       <Tabs
-                      value={value}
-                      onChange={handleChange}
+                      value={value2}
+                      onChange={handleNewChange}
                       indicatorColor="primary"
                       textColor="#000"
                       aria-label="full width tabs example"
@@ -100,14 +110,14 @@ export default function HigherStudents() {
                 
                     <SwipeableViews
                         axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-                        index={value}
-                        onChangeIndex={handleChangeIndex}
+                        index={value2}
+                        onChangeIndex={handleNewChangeIndex}
                     >
 
-                      <TabPanel value={value} index={0} dir={theme.direction}>
+                      <TabPanel value={value2} index={0} dir={theme.direction}>
                           <ComplexGrid />
                       </TabPanel>
-                      <TabPanel value={value} index={1} dir={theme.direction}>
+                      <TabPanel value={value2} index={1} dir={theme.direction}>
                           <ComplexGrid />
                       </TabPanel>
 

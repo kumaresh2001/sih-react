@@ -46,8 +46,29 @@
             "img":"../assets/HR.jpg"}, 
         {"name":"Civil_service",
             "description":"The civil service is a collective term for a sector of government composed mainly of career civil servants hired on professional merit rather than appointed or elected, whose institutional tenure typically survives transitions of political leadership. ",
-            "img":"../assets/civilservice.jpg"}]
+            "img":"../assets/civilservice.jpg"}],
+        
+        "stream":[{"name":"engineering_graphics",
+            "description":"An engineering drawing is a type of technical drawing that is used to convey information about an object. A common use is to specify the geometry necessary for the construction of a component and is called a detail drawing. Usually, a number of drawings are necessary to completely specify even a simple component.",
+            "img":"../assets/eg.jpg"},
+             {"name":"language", "description":"A language is a structured system of communication used by humans. Languages can be based on speech and gesture, sign, or writing. The structure of language is its grammar and the free components are its vocabulary",
+                "img":"../assets/lang.jpg"}, 
+             {"name":"physics","description":"Physics is the natural science that studies matter, its fundamental constituents, its motion and behavior through space and time, and the related entities of energy and force. Physics is one of the most fundamental scientific disciplines, and its main goal is to understand how the universe behaves.",
+                "img":"../assets/physics.png"},
+             {"name":"chemistry", "description":"Chemistry is the branch of science that deals with the properties, composition, and structure of elements and compounds, how they can change, and the energy that is released or absorbed when they change.",
+                "img":"../assets/chem.jpg"},
+             {"name":"biology","description":"Biology is a branch of science that deals with living organisms and their vital processes. Biology encompasses diverse fields, including botany, conservation, ecology, evolution, genetics, marine biology, medicine, microbiology, molecular biology, physiology, and zoology.",
+                "img":"../assets/bio-maths.jpg"},
+             {"name":"math","description":"Mathematics is an area of knowledge, which includes the study of such topics as numbers, formulas and related structures, shapes and spaces in which they are contained, and quantities and their changes. There is no general consensus about its exact scope or epistemological status.",
+                "img":"../assets/maths.jpg"},
+             {"name":"business_studies","description":"Business studies is an academic subject taught in schools and at university level in many countries. Its study combines elements of accountancy, finance, marketing, organizational studies, human resource management, and operations.",
+                "img":"../assets/business.jpg"},
+             {"name":"marketing","description":"Marketing refers to activities a company undertakes to promote the buying or selling of a product or service. Marketing includes advertising, selling, and delivering products to consumers or other businesses. Some marketing is done by affiliates on behalf of a company.",
+                "img":"../assets/marketing.jpg"}]
 }
+
+
+
 
 
 

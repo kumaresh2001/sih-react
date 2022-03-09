@@ -2,14 +2,7 @@ import { Component } from "react";
 import Button from '@mui/material/Button';
 import React from "react";
 import Grid from '@mui/material/Grid';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-const fileQuestions = require("../assets/questions.json");
 
 
 const Quiz_Set = [
@@ -63,13 +56,13 @@ const Quiz_Set = [
     }
 ]
 
-class Quiz extends Component{
+class Quiz2 extends Component{
 
    constructor(props){
         super(props)
         this.state = {
             activeStep:0,
-            Quiz_Set : fileQuestions.questions,
+            Quiz_Set : Quiz_Set,
             booleanonsubmit : false,
             Total:0,
             open:false,
@@ -77,7 +70,6 @@ class Quiz extends Component{
             errormsg:"",
             score:0,
         }
-        
         
    }
 
@@ -173,45 +165,27 @@ return(
                             
                         )
                         })} */}
-                        <TableContainer component={Paper}>
-                            <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                                <TableHead>
-                                <TableRow>
-                                    <TableCell align="center">QUESTION</TableCell>
-                                 
-                                    <TableCell colspan={3} align="right">ACCURATE</TableCell>
-                                    <TableCell></TableCell>
-                                    <TableCell colspan={3} align="center">NORMAL</TableCell>
-                                    <TableCell></TableCell>
-                                    
-                                    <TableCell colspan={3} align="left">INACCURATE</TableCell>
-                                    
-                                </TableRow>
-                                </TableHead>
-                                <TableBody>
+                        
                                 {this.state.Quiz_Set.map((row,index) => (
-                                    <TableRow
-                                    key={index}
-                                    >
+                                    <React.Fragment>
+                                    <p>{row.que}</p>
+                                    <p>
+                                        ACCURATE
+                                        &emsp;
+                                        <input onChange={()=>{this.onInputChange(index,5)}} type="radio" />
+                                        <input onChange={()=>{this.onInputChange(index,4)}} type="radio" />
+                                        <input onChange={()=>{this.onInputChange(index,3)}} type="radio" />
+                                        <input onChange={()=>{this.onInputChange(index,2)}} type="radio" />
+                                        <input onChange={()=>{this.onInputChange(index,1)}} type="radio" />
+                                        &emsp;
+                                        INACCURATE
+                                    </p>
+                                    <br />
+                                    </React.Fragment>
                                     
-                                    <TableCell align="left">{row}</TableCell>
-
-                                    <TableCell></TableCell>
-                                    <TableCell align="left"><input onChange={()=>{this.onInputChange(index,5)}} type="radio" /></TableCell>
-                                    <TableCell></TableCell>
-                                    <TableCell align="left"><input onChange={()=>{this.onInputChange(index,4)}} type="radio" /></TableCell>
-                                    <TableCell></TableCell>
-                                    <TableCell align="left"><input onChange={()=>{this.onInputChange(index,3)}} type="radio" /></TableCell>
-                                    <TableCell></TableCell>
-                                    <TableCell align="left"><input onChange={()=>{this.onInputChange(index,2)}} type="radio" /></TableCell>
-                                    <TableCell></TableCell>
-                                    <TableCell align="left"><input onChange={()=>{this.onInputChange(index,1)}} type="radio" /></TableCell>
-                                    </TableRow>
-                                
+                                    
                                 ))}
-                                </TableBody>
-                            </Table>
-                        </TableContainer>
+                             
                 </div>
                 
             </div>
@@ -235,4 +209,4 @@ return(
   }
 }
 
-export default Quiz;
+export default Quiz2;

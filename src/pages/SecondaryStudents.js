@@ -70,7 +70,7 @@ export default function SecondaryStudents() {
                     centered
                     >
                     <Tab wrapped label="Streams"  {...a11yProps(0)} />
-                    <Tab wrapped label="Professionals "  {...a11yProps(1)} />
+                    <Tab wrapped label="Professions "  {...a11yProps(1)} />
                     <Tab wrapped label="Personality Test"  {...a11yProps(2)} />
                     </Tabs>
                 </AppBar>

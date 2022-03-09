@@ -1,4 +1,5 @@
 import  React,{useState} from 'react';
+import { useNavigate } from "react-router-dom";
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -20,14 +21,26 @@ import HelpIcon from '@mui/icons-material/Help';
 import Modal from '@mui/material/Modal';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import TextField from '@mui/material/TextField';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
 
 
 export default function NavBar() {
     const [state,setState] = useState(false);
     const [open,setOpen] = useState(false);
 
+    const [registerOpen,setRegisterOpen] = useState(false);
+    const onRegisterOpen = () =>setRegisterOpen(true);
+    const onRegisterClose = () =>setRegisterOpen(false);
     const onOpen = () =>setOpen(true);
     const onClose = () =>setOpen(false);
+    const navigate = useNavigate();
+    const routeChange = (path) =>{ 
+      navigate(path);
+    }
 
     const style = {
         position: 'absolute',
@@ -37,7 +50,7 @@ export default function NavBar() {
         width: 400,
         backgroundColor:"white",
         border: '1px solid #000',
-        borderRadius:"20px",
+        borderRadius:"2px",
         paddingTop:"30px",
         paddingBottom:"30px",
         textAlign:"center",
@@ -70,8 +83,7 @@ export default function NavBar() {
 
                 <Divider />
 
-
-              <ListItem style={{marginTop:"10px"}} button key={"Home"}>
+              <ListItem style={{marginTop:"10px"}} button onClick={()=>{navigate("/")}} key={"Home"}>
                 <ListItemIcon>
                     <HomeIcon />
                 </ListItemIcon>
@@ -132,7 +144,9 @@ export default function NavBar() {
           <Typography  style={{textAlign:"center"}} variant="h4" component="div" sx={{ flexGrow: 6 }}>
             Meraki
           </Typography>
-          <Button color="inherit" style={{fontSize:"1.2rem"}} onClick={setOpen}>Login</Button>
+          
+          <Button color="inherit" style={{fontSize:"0.8rem"}} onClick={setOpen}>Login</Button>
+          <Button color="inherit" style={{fontSize:"0.8rem"}} onClick={onRegisterOpen}>Register</Button>
         </Toolbar>
       </AppBar>
         
@@ -174,6 +188,68 @@ export default function NavBar() {
         </Box>
 
       </Modal>
+
+
+      <Modal
+        open={registerOpen}
+        onClose={onRegisterClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+          <Box style={style}>
+          <Typography  id="modal-modal-title" variant="h5" component="h2">
+            Register
+          </Typography>
+
+            <br />
+
+          <AccountCircleIcon sx={{ fontSize: 70 }} />
+
+            <br />
+
+          <TextField  style={{marginTop:"30px"}} id="outlined-basic" label="Username" variant="outlined" />
+
+          <TextField  style={{marginTop:"30px"}} id="outlined-basic" label="Name" variant="outlined" />
+
+            <br/>
+        
+        <TextField  style={{marginTop:"30px",marginBottom:"20px"}} id="outlined-basic" label="Password" variant="outlined" />
+
+        <br />
+        <FormControl>
+          
+          <RadioGroup
+            row
+            aria-labelledby="demo-row-radio-buttons-group-label"
+            name="row-radio-buttons-group"
+          >
+            <FormControlLabel value="student" control={<Radio />} label="Student" />
+            <FormControlLabel value="parent" control={<Radio />} label="Parent" />
+            
+          </RadioGroup>
+        
+          <RadioGroup
+            row
+            aria-labelledby="demo-row-radio-buttons-group-label"
+            name="row-radio-buttons-group"
+          >
+            <FormControlLabel value="student" control={<Radio />} label="9/10" />
+            &emsp;&emsp;
+            <FormControlLabel value="parent" control={<Radio />} label="11/12" />
+            
+          </RadioGroup>
+
+
+        </FormControl>
+
+            <br /><br />
+            <Button variant="contained" color="primary">Submit</Button>
+
+
+        </Box>
+
+      </Modal>
+
 
       
     </Box>

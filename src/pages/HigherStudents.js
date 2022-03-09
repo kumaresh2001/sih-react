@@ -82,8 +82,41 @@ export default function HigherStudents() {
                     <TabPanel value={value} index={0} dir={theme.direction}>
                         <ComplexGrid />
                     </TabPanel>
-                    <TabPanel value={value} index={1} dir={theme.direction}>
-                        <ComplexGrid />
+                  <TabPanel value={value} index={1} dir={theme.direction}>
+                        
+                    <AppBar color="transparent" boxShadow="none" position="static">
+                      <Tabs
+                      value={value}
+                      onChange={handleChange}
+                      indicatorColor="primary"
+                      textColor="#000"
+                      aria-label="full width tabs example"
+                      variant="fullWidth"
+                      >
+                        <Tab wrapped label="Domestic"  {...a11yProps(0)} />
+                        <Tab wrapped label="Abroad"  {...a11yProps(1)} />
+                      </Tabs>
+                    </AppBar>
+                
+                    <SwipeableViews
+                        axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+                        index={value}
+                        onChangeIndex={handleChangeIndex}
+                    >
+
+                      <TabPanel value={value} index={0} dir={theme.direction}>
+                          <ComplexGrid />
+                      </TabPanel>
+                      <TabPanel value={value} index={1} dir={theme.direction}>
+                          <ComplexGrid />
+                      </TabPanel>
+
+                    </SwipeableViews>
+
+
+
+
+
                     </TabPanel>
                     <TabPanel value={value} index={2} dir={theme.direction}>
                         <Quiz />

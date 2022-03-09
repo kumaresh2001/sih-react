@@ -199,7 +199,7 @@ class Quiz extends Component{
             answers[i] = 0;
             for(let j=0;j<5;j++)
             {
-                if(this.state.checked==true)
+                if(this.state.checked[i][j])
                 {
                     answers[i] = j+1;
                 }
@@ -208,41 +208,45 @@ class Quiz extends Component{
         let temp;
         temp = (8 + answers[40] - answers[41] + answers[42] - answers[43] + answers[44] - answers[45] + answers[46] + answers[47] + answers[48] + answers[49] )
         console.log(temp)
-        this.setState({o : temp})
-        if(temp<9)
-        {
-            this.setState({os:"Poor"})
-        }
-        else if(temp>=10&&temp<=19)
-        {
-            this.setState({os:"Average"})
-        }
-        else if(temp>=20&&temp<=29)
-        {
-            this.setState({os:"Fair"})
-        }
-        else{
-            this.setState({os:"Great"})
-        }
+        this.setState({o : temp},()=>{
+            if(temp<9)
+            {
+                this.setState({os:"Poor"})
+            }
+            else if(temp>=10&&temp<=19)
+            {
+                this.setState({os:"Average"})
+            }
+            else if(temp>=20&&temp<=29)
+            {
+                this.setState({os:"Fair"})
+            }
+            else{
+                this.setState({os:"Great"})
+            }
+    
+        })
 
-        this.setState({c :(14 + answers[30] - answers[31] + answers[32] - answers[33] + answers[34] - answers[35] - answers[36] - answers[37] + answers[38] + answers[39] )})
-        if(this.state.c<9)
-        {
-            this.setState({cs:"Poor"})
-        }
-        else if(this.state.c>=10&&this.state.c<=19)
-        {
-            this.setState({cs:"Average"})
-        }
-        else if(this.state.c>=20&&this.state.c<=29)
-        {
-            this.setState({cs:"Fair"})
-        }
-        else{
-            this.setState({cs:"Great"})
-        }
-        this.setState({e : (20 + answers[0] - answers[1] + answers[2] - answers[3] + answers[4] - answers[5] + answers[6] - answers[7] + answers[8] - answers[9])})
-        if(this.state.e<9)
+        this.setState({c :(14 + answers[30] - answers[31] + answers[32] - answers[33] + answers[34] - answers[35] - answers[36] - answers[37] + answers[38] + answers[39] )},()=>{
+            if(this.state.c<9)
+            {
+                this.setState({cs:"Poor"})
+            }
+            else if(this.state.c>=10&&this.state.c<=19)
+            {
+                this.setState({cs:"Average"})
+            }
+            else if(this.state.c>=20&&this.state.c<=29)
+            {
+                this.setState({cs:"Fair"})
+            }
+            else{
+                this.setState({cs:"Great"})
+            }
+        })
+       
+        this.setState({e : (20 + answers[0] - answers[1] + answers[2] - answers[3] + answers[4] - answers[5] + answers[6] - answers[7] + answers[8] - answers[9])},()=>{
+            if(this.state.e<9)
         {
             this.setState({es:"Poor"})
         }
@@ -257,38 +261,44 @@ class Quiz extends Component{
         else{
             this.setState({es:"Great"})
         }
-        this.setState({a : (14 - answers[20] + answers[21] - answers[22] + answers[23] - answers[24] + answers[25] - answers[26] + answers[27] + answers[28] + answers[29])})
-        if(this.state.a<9)
-        {
-            this.setState({as:"Poor"})
-        }
-        else if(this.state.a>=10&&this.state.a<=19)
-        {
-            this.setState({as:"Average"})
-        }
-        else if(this.state.a>=20&&this.state.a<=29)
-        {
-            this.setState({as:"Fair"})
-        }
-        else{
-            this.setState({as:"Great"})
-        }
-        this.setState({n : (38 - answers[10] + answers[11] - answers[12] + answers[13] - answers[14] - answers[15] - answers[16] - answers[17] - answers[18] - answers[19])})
-        if(this.state.n<9)
-        {
-            this.setState({ns:"Poor"})
-        }
-        else if(this.state.n>=10&&this.state.n<=19)
-        {
-            this.setState({ns:"Average"})
-        }
-        else if(this.state.n>=20&&this.state.n<=29)
-        {
-            this.setState({ns:"Fair"})
-        }
-        else{
-            this.setState({ns:"Great"})
-        }
+        })
+        
+        this.setState({a : (14 - answers[20] + answers[21] - answers[22] + answers[23] - answers[24] + answers[25] - answers[26] + answers[27] + answers[28] + answers[29])},()=>{
+            if(this.state.a<9)
+            {
+                this.setState({as:"Poor"})
+            }
+            else if(this.state.a>=10&&this.state.a<=19)
+            {
+                this.setState({as:"Average"})
+            }
+            else if(this.state.a>=20&&this.state.a<=29)
+            {
+                this.setState({as:"Fair"})
+            }
+            else{
+                this.setState({as:"Great"})
+            }
+        })
+       
+        this.setState({n : (38 - answers[10] + answers[11] - answers[12] + answers[13] - answers[14] - answers[15] - answers[16] - answers[17] - answers[18] - answers[19])},()=>{
+            if(this.state.n<9)
+            {
+                this.setState({ns:"Poor"})
+            }
+            else if(this.state.n>=10&&this.state.n<=19)
+            {
+                this.setState({ns:"Average"})
+            }
+            else if(this.state.n>=20&&this.state.n<=29)
+            {
+                this.setState({ns:"Fair"})
+            }
+            else{
+                this.setState({ns:"Great"})
+            }
+        })
+
         console.log(answers)
          //   console.log(this.state.Quiz_Set)
     //      let list = this.state.Quiz_Set ;

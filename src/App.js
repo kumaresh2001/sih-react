@@ -14,6 +14,7 @@ import SecondaryStudents from "./pages/SecondaryStudents";
 import ParentsPage from "./pages/ParentsPage";
 import About from "./pages/About";
 import ApiTest from "./components/ApiTest";
+import RecordAudio from "./pages/RecordAudio";
 
 export default function App() {
   return (
@@ -25,7 +26,7 @@ export default function App() {
       <Route path="/parentspage" element={<ParentsPage />}/>
 
       <Route path="/about" element={<About />}/>
-
+      <Route path="/record" element={<RecordAudio/>} />
       {/* <Route path="/about" element={<About />} /> */}
 
       <Route path="/apitest" element={<ApiTest />} />

@@ -54,8 +54,8 @@ function Carousel() {
 
   return (
     <React.Fragment>
-      <div style={{backgroundColor:"#D2D7D3",width:"100%",height: "50%", paddingTop:"0px",boxSizing:"border-box"}}>
-      <Box   sx={{marginLeft:"0%",maxWidth: "100%" ,height: "50%"}}>
+      <div style={{backgroundColor:"#D2D7D3",width:"100%",paddingTop:"10px",boxSizing:"border-box"}}>
+      <Box   sx={{marginLeft:"10%",maxWidth: "80%", flexGrow: 1 }}>
       
       <AutoPlaySwipeableViews
         axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}

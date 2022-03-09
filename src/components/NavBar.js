@@ -28,7 +28,7 @@ import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 
 
-export default function NavBar() {
+export default function NavBar(props) {
     const [state,setState] = useState(false);
     const [open,setOpen] = useState(false);
     const [firstSelectedValue,setFirstSelectedValue] = useState("");
@@ -41,7 +41,7 @@ export default function NavBar() {
     const routeChange = (path) =>{ 
       navigate(path);
     }
-    const [signin,setSignin] = useState(false);
+    const [signin,setSignin] = useState(props.signIn);
 
     const onChangeValue = (event)=>{
       setFirstSelectedValue(event.target.value);
@@ -193,7 +193,7 @@ export default function NavBar() {
         <TextField  style={{marginTop:"30px",marginBottom:"20px"}} id="outlined-basic" label="Password" variant="outlined" />
 
             <br />
-            <Button variant="contained" color="primary">Submit</Button>
+            <Button variant="contained" onClick={()=>navigate("/higherstudents")} color="primary">Submit</Button>
 
 
         </Box>

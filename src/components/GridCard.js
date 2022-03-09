@@ -44,7 +44,7 @@ export default function GridCard(props) {
         <Typography gutterBottom variant="h5" component="div">
           {props.name}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography style={{textAlign:"justify",textJustify: "interWord"}} variant="body2" color="text.secondary">
           {props.description}
         </Typography>
       </CardContent>
@@ -59,7 +59,9 @@ export default function GridCard(props) {
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
+            <div style={{fontWeight:"bold"}}>
             {props.name}
+            </div>
           </Typography>
           <Paper>
             <img style={{margin:"20px",width:"50vw"}}  src={props.image} />
@@ -67,7 +69,9 @@ export default function GridCard(props) {
             
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
            {props.description}<br />
-           {props.specialisation}<br />
+           <div style={{fontWeight:"bold"}}>
+             Speciality - {props.specialisation}<br />
+            </div>
 
           </Typography>
         </Box>

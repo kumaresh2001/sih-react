@@ -9,7 +9,7 @@ export class Home extends Component {
     return (
         <React.Fragment>
 
-            <NavBar />
+            <NavBar signIn={false} />
             <Carousel />
             <ComplexGrid />
         

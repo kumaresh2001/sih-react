@@ -76,7 +76,7 @@ export default function HigherStudents() {
 
   return (
       <React.Fragment>
-           <NavBar />
+           <NavBar signIn="true" />
             <Box sx={{ width: "100%" }}>
                 <AppBar color="transparent" boxShadow="none" position="static">
                     <Tabs
@@ -87,8 +87,8 @@ export default function HigherStudents() {
                     aria-label="full width tabs example"
                     centered
                     >
-                    <Tab wrapped label="Professions"  {...a11yProps(0)} />
-                    <Tab wrapped label="Universities"  {...a11yProps(1)} />
+                    <Tab wrapped label="Universities"  {...a11yProps(0)} />
+                    <Tab wrapped label="Professions"  {...a11yProps(1)} />
                     <Tab wrapped label="Personality Test"  {...a11yProps(2)} />
                     </Tabs>
                 </AppBar>
@@ -130,11 +130,7 @@ export default function HigherStudents() {
                       </TabPanel>
 
                     </SwipeableViews>
-
-
-
-
-
+                    
                     </TabPanel>
                     <TabPanel value={value} index={2} dir={theme.direction}>
                         <Quiz />

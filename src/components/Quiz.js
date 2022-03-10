@@ -24,8 +24,12 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { styled } from '@mui/material/styles';
 import { Checkbox } from "@mui/material";
 import GridCard from "./GridCard";
+import GridCard2 from "./GridCard2";
+import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 const fileQuestions = require("../assets/questions.json");
-const QuizResponse = require("../assets/QuizResults.json");
+const {quizResults} = require("../assets/QuizResults.js");
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -94,7 +98,7 @@ const Quiz_Set = [
 
 
 class Quiz extends Component{
-
+  
    constructor(props){
         super(props)
         this.state = {
@@ -171,7 +175,7 @@ class Quiz extends Component{
                 [true,false,false,false,false],
                 [false,false,false,true,false],
                 [false,false,false,true,false],
-                [false,false,false,true,false],
+                [false,false,false,false,true],
                 [true,false,false,false,false],
                 [false,false,false,false,true],
                 [true,false,false,false,false],
@@ -331,8 +335,10 @@ class Quiz extends Component{
                 //console.log(res.data);
                 let tempProfession = response.profession;
                 //console.log(tempProfession[0][1])
+                let tempState;
                 for(let i=0;i<tempProfession[0].length;i++)
                 {
+                    
                     if(tempProfession[0][i]==true)
                     {
                         let tempState = this.state.profession;
@@ -340,37 +346,41 @@ class Quiz extends Component{
                         {
                             tempState=[];
                         }
-                        let tempString =QuizResponse.profession[i];
+                        let tempString = quizResults.profession[i];
                         tempState.push(tempString);
                         // tempState.push(QuizResponse.profession[i])
                         this.setState({profession:tempState},()=>{
                             //console.log(this.state.profession)
                         })
                     }
+                    console.log(tempState)
                 }
 
                  let tempStream = response.stream;
+                 let tempState2;
                  for(let i=0;i<tempStream[0].length;i++)
                  {
+                     
                      if(tempStream[0][i]==true)
                      {
-                         let tempState = this.state.stream;
-                         if(tempState==undefined)
+                         let tempState2 = this.state.stream;
+                         if(tempState2==undefined)
                          {
-                             tempState=[];
+                             tempState2=[];
                          }
-                         let tempString =QuizResponse.stream[i];
-                         tempState.push(tempString);
+                         let tempString =quizResults.stream[i];
+                         tempState2.push(tempString);
                          // tempState.push(QuizResponse.profession[i])
-                         this.setState({stream:tempState},()=>{//console.log(this.state.stream)
+                         this.setState({stream:tempState2},()=>{//console.log(this.state.stream)
                         })
                      }
                  }
+                 console.log(tempState2);
 
 
             });
             
-            this.setState({showResults:true},()=>{console.log(this.state.profession);console.log(this.state.stream)})
+            this.setState({showResults:true},)
        
           
          //   console.log(this.state.Quiz_Set)
@@ -542,7 +552,7 @@ return(
                 aria-controls="panel1a-content"
                 id="panel1a-header"
                 >
-                <Typography> O - openness - {this.state.o} - {this.state.os}</Typography>
+                <Typography> O - Openness &emsp;&emsp; &emsp;&emsp; &emsp; Score:{this.state.o} &emsp;&emsp; Percentile:{2.5*this.state.o}  &emsp;&emsp; Performance:{this.state.os}</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                 <Typography>
@@ -556,7 +566,7 @@ return(
                 aria-controls="panel2a-content"
                 id="panel2a-header"
                 >
-                <Typography> C - conscientousness -{this.state.c} - {this.state.cs}</Typography>
+                <Typography> C - Conscientousness &emsp; &emsp; Score:{this.state.c} &emsp;&emsp; Percentile:{2.5*this.state.c}  &emsp;&emsp; Performance:{this.state.cs}</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                 <Typography>
@@ -570,7 +580,7 @@ return(
                 aria-controls="panel1a-content"
                 id="panel1a-header"
                 >
-                <Typography>  E - extroversion - {this.state.e} - {this.state.es}</Typography>
+                <Typography>  E - Extroversion &emsp;&emsp; &emsp; &emsp; Score:{this.state.e} &emsp;&emsp; Percentile:{2.5*this.state.e}  &emsp;&emsp; Performance:{this.state.es}</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                 <Typography>
@@ -584,7 +594,7 @@ return(
                 aria-controls="panel1a-content"
                 id="panel1a-header"
                 >
-                <Typography>  A - agreeableness - {this.state.a} - {this.state.as}</Typography>
+                <Typography>  A - Agreeableness &emsp; &emsp; &emsp; Score:{this.state.a} &emsp;&emsp; Percentile:{2.5*this.state.a}  &emsp;&emsp; Performance:{this.state.as}</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                 <Typography>
@@ -598,7 +608,7 @@ return(
                 aria-controls="panel1a-content"
                 id="panel1a-header"
                 >
-                <Typography>   N - neuroticism - {this.state.n} - {this.state.ns}</Typography>
+                <Typography>   N - Neuroticism &emsp; &emsp; &emsp; &emsp; Score:{this.state.n} &emsp;&emsp; Percentile:{2.5*this.state.n}  &emsp;&emsp; Performance:{this.state.ns}</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                 <Typography>
@@ -608,34 +618,46 @@ return(
             </Accordion>
             
           </Paper>
+          <Paper style={{padding:"20px",fontSize:"1.3rem",textAlign:"center"}}>
+          Other Strong personality traits correlated with you are intellect , ideas , actions , feeling and values.You also have some correlation with impulsiveness and self-consciousness since your answers to the questions were high 
+          </Paper>
             
             <Box>
+                <Box style={{display:"block"}}>
                 <Typography style={{textAlign:"center",fontSize:"1.5rem"}}>
                     Suitable Streams for you
                 </Typography>
+                </Box>
+                
                 <Grid  container justifyContent="space-evenly" rowSpacing={6} columnSpacing={{ xs: 4, sm: 4, md: 4 }}>
                 {
                     this.state.stream?this.state.stream.map(item=>{return(
                     <Grid  item xs="auto">
                         <Item >
-                            <GridCard name={item.name} image={require("../assets/stanford.jpg")} description={item.description}/>
+                            <GridCard name={item.name} image={item.img} description={item.description}/>
                         </Item>
                     </Grid>)
                     }):""
                 }
-                </Grid>            </Box>
+                </Grid>            
+            </Box>
 
             <Box>
+                <Box style={{display:"block"}}>
                 <Typography style={{textAlign:"center",fontSize:"1.5rem"}}>
                     Suitable Professions for you
                 </Typography>
+                </Box>
+               
                 <Grid  container justifyContent="space-evenly" rowSpacing={6} columnSpacing={{ xs: 4, sm: 4, md: 4 }}>
                 {
                     this.state.profession?this.state.profession.map(item=>{return(
                     <Grid  item xs="auto">
-                        <Item >
-                            <GridCard name={item.name} image={require("../assets/stanford.jpg")} description={item.description}/>
+                        <a href="./advanced">
+                        <Item  >
+                            <GridCard2 style={{color:"black"}} name={item.name} image={item.img} description={item.description}/>
                         </Item>
+                        </a>
                     </Grid>)
                     }):""
                 }

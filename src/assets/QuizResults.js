@@ -18,7 +18,7 @@ export const quizResults ={
             "description":"A psychiatrist is a physician who specializes in psychiatry, the branch of medicine devoted to the diagnosis, prevention, study, and treatment of mental disorders. Psychiatrists have broad training in a bio-psycho-social approach to assessment and management of mental illness.",
              "img":require("../assets/psychatrist.jpg")},
         {"name":"Writer",
-            "description":"A writer is a person who uses written words in different writing styles and techniques to communicate ideas. Writers produce different forms of literary art and creative writing such as novels, short stories, books, poetry.",
+            "description":"A writer is a person who uses written words in different writing styles and techniques to communicate ideas. Writers produce different forms of literary art and creative writing such as novels, short stories, books, poetry, travelogues, plays, screenplays.",
             "img":require("../assets/writer.jpg")}, 
         {"name":"Company Secretary",
             "description":"A Company Secretary is a senior position in a private sector company or public sector organisation. Also known as Compliance Officers, it is one of the positions that is a part of the key managerial personnel of any company.",

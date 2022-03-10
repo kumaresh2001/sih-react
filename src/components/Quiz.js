@@ -21,10 +21,23 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import axios from "axios";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { styled } from '@mui/material/styles';
 import { Checkbox } from "@mui/material";
+import GridCard from "./GridCard";
 const fileQuestions = require("../assets/questions.json");
 const QuizResponse = require("../assets/QuizResults.json");
 
+const Item = styled(Paper)(({ theme }) => ({
+    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+    ...theme.typography.body2,
+    padding: theme.spacing(1),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+    boxShadow:"none"
+  }));
+  const style={
+      marginBottom:"20px"
+  }
 
 
 const Quiz_Set = [
@@ -77,6 +90,8 @@ const Quiz_Set = [
         ans : "Isosceles"
     }
 ]
+
+
 
 class Quiz extends Component{
 
@@ -211,7 +226,7 @@ class Quiz extends Component{
         }
         let temp;
         temp = (8 + answers[40] - answers[41] + answers[42] - answers[43] + answers[44] - answers[45] + answers[46] + answers[47] + answers[48] + answers[49] )
-        console.log(answers)
+        //console.log(answers)
         this.setState({o : temp},()=>{
             if(temp<9)
             {
@@ -313,9 +328,9 @@ class Quiz extends Component{
             }
           }).then(res=>{
                 response = res.data;
-                console.log(res.data);
+                //console.log(res.data);
                 let tempProfession = response.profession;
-                console.log(tempProfession[0][1])
+                //console.log(tempProfession[0][1])
                 for(let i=0;i<tempProfession[0].length;i++)
                 {
                     if(tempProfession[0][i]==true)
@@ -328,7 +343,9 @@ class Quiz extends Component{
                         let tempString =QuizResponse.profession[i];
                         tempState.push(tempString);
                         // tempState.push(QuizResponse.profession[i])
-                        this.setState({profession:tempState},()=>{console.log(this.state.profession)})
+                        this.setState({profession:tempState},()=>{
+                            //console.log(this.state.profession)
+                        })
                     }
                 }
 
@@ -345,7 +362,8 @@ class Quiz extends Component{
                          let tempString =QuizResponse.stream[i];
                          tempState.push(tempString);
                          // tempState.push(QuizResponse.profession[i])
-                         this.setState({stream:tempState},()=>{console.log(this.state.stream)})
+                         this.setState({stream:tempState},()=>{//console.log(this.state.stream)
+                        })
                      }
                  }
 
@@ -381,7 +399,7 @@ class Quiz extends Component{
     //    }else{
     //        this.setState({booleanonsubmit:true,Total:count})
     //    }
-    console.log(this.state.score);
+    //console.log(this.state.score);
     this.setState({showModal:true})
     }
     handleClose()
@@ -592,15 +610,37 @@ return(
           </Paper>
             
             <Box>
-                <Typography style={{textAlign:"center"}}>
+                <Typography style={{textAlign:"center",fontSize:"1.5rem"}}>
                     Suitable Streams for you
                 </Typography>
-            </Box>
+                <Grid  container justifyContent="space-evenly" rowSpacing={6} columnSpacing={{ xs: 4, sm: 4, md: 4 }}>
+                {
+                    this.state.stream?this.state.stream.map(item=>{return(
+                    <Grid  item xs="auto">
+                        <Item >
+                            <GridCard name={item.name} image={require("../assets/stanford.jpg")} description={item.description}/>
+                        </Item>
+                    </Grid>)
+                    }):""
+                }
+                </Grid>            </Box>
 
             <Box>
-                <Typography>
+                <Typography style={{textAlign:"center",fontSize:"1.5rem"}}>
                     Suitable Professions for you
                 </Typography>
+                <Grid  container justifyContent="space-evenly" rowSpacing={6} columnSpacing={{ xs: 4, sm: 4, md: 4 }}>
+                {
+                    this.state.profession?this.state.profession.map(item=>{return(
+                    <Grid  item xs="auto">
+                        <Item >
+                            <GridCard name={item.name} image={require("../assets/stanford.jpg")} description={item.description}/>
+                        </Item>
+                    </Grid>)
+                    }):""
+                }
+                </Grid>
+              
             </Box>
          
         </Box>

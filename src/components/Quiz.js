@@ -110,9 +110,11 @@ class Quiz extends Component{
                 textAlign:"center",
                 boxShadow: 24,
                 p: 4,
+               
               },
             score:0,
             showModal:false,
+            showResults:false,
             checked:[
                 [false,false,true,false,false],
                 [true,false,false,false,false],
@@ -135,7 +137,7 @@ class Quiz extends Component{
                 [true,false,false,false,false],
                 [true,false,false,false,false],
                 [true,false,false,false,false],
-                [true,false,false,false,false],
+                [false,false,false,false,true],
                 [false,false,false,false,true],
                 [true,false,false,false,false],
                 [false,false,false,false,true],
@@ -330,10 +332,27 @@ class Quiz extends Component{
                     }
                 }
 
-                 
+                 let tempStream = response.stream;
+                 for(let i=0;i<tempStream[0].length;i++)
+                 {
+                     if(tempStream[0][i]==true)
+                     {
+                         let tempState = this.state.stream;
+                         if(tempState==undefined)
+                         {
+                             tempState=[];
+                         }
+                         let tempString =QuizResponse.stream[i];
+                         tempState.push(tempString);
+                         // tempState.push(QuizResponse.profession[i])
+                         this.setState({stream:tempState},()=>{console.log(this.state.stream)})
+                     }
+                 }
+
 
             });
             
+            this.setState({showResults:true})
        
           
          //   console.log(this.state.Quiz_Set)
@@ -390,7 +409,10 @@ class Quiz extends Component{
 render(){
 return(
     <React.Fragment>
-        <div >
+            {
+                this.state.showResults==false?
+                <React.Fragment>
+                    <div >
             <div style={{display:"flex",justifyContent:"center"}}  className="Quiz_render_container">
                 <div  className="Quiz_container_display"> 
                     {/* {this.state.Quiz_Set.map((item,index)=>{
@@ -486,13 +508,17 @@ return(
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
         >
-        <Box sx={this.state.style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            Your Score is Validated
-          </Typography>
-          <Paper>
-            Score<br />
-            <Accordion>
+        
+      </Modal>
+                </React.Fragment>
+                :<React.Fragment>
+                    <Box >
+                        <Typography id="modal-modal-title" style={{textAlign:"center"}} variant="h6" component="h2">
+                            Your Score is Validated
+                        </Typography>
+                        <Paper  style={{textAlign:"center"}}>
+                           
+                <Accordion >
                 <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1a-content"
@@ -565,9 +591,22 @@ return(
             
           </Paper>
             
+            <Box>
+                <Typography style={{textAlign:"center"}}>
+                    Suitable Streams for you
+                </Typography>
+            </Box>
+
+            <Box>
+                <Typography>
+                    Suitable Professions for you
+                </Typography>
+            </Box>
          
         </Box>
-      </Modal>
+                </React.Fragment>
+            }
+        
         
     </React.Fragment>
  

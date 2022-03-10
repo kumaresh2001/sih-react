@@ -25,7 +25,7 @@ import { styled } from '@mui/material/styles';
 import { Checkbox } from "@mui/material";
 import GridCard from "./GridCard";
 const fileQuestions = require("../assets/questions.json");
-const QuizResponse = require("../assets/QuizResults.json");
+const QuizResponse = require("../assets/QuizResults.js");
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',

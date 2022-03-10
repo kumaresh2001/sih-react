@@ -94,10 +94,10 @@ export default function NavBar(props) {
                 <ListItemText primary={"Home"} />
               </ListItem>
 
-            <ListItem style={{marginTop:"10px"}} button onClick={()=>{navigate("/professions")}} key={"Professions"}>
+            <ListItem style={{marginTop:"10px"}} onClick={()=>{navigate("/professions")}} button key={"Professions"}>
                 <ListItemIcon>
                     <WorkIcon />
-                </ListItemIcon>
+          </ListItemIcon>
                 <ListItemText primary={"Professions"} />
               </ListItem>
 
@@ -146,7 +146,11 @@ export default function NavBar(props) {
             <MenuIcon />
           </IconButton>
           <Typography  style={{textAlign:"center"}} variant="h4" component="div" sx={{ flexGrow: 6 }}>
-            Meraki
+            <div  style={{display:"flex",alignItems:"center",justifyContent:"center"}}>
+              <img src={require("../assets/LOGO.png")} style={{height:"3rem",width:"3rem", zIndex:"2",marginLeft:"10%",marginRight:"2%"}}/>
+              Meraki
+            </div>
+            
           </Typography>
           {
             signin==false?<React.Fragment>

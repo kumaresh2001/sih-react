@@ -6,6 +6,7 @@ export class Advanced extends Component {
   render() {
     return (
         <React.Fragment>
+            
             <NavBar />
             <Footer />
         </React.Fragment>

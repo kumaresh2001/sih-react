@@ -148,6 +148,7 @@ export default function HigherStudents() {
                 </SwipeableViews>
             </Box>
             <Footer />
+            
       </React.Fragment>
   
 

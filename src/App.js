@@ -16,6 +16,8 @@ import About from "./pages/About";
 import ApiTest from "./components/ApiTest";
 import Professions from "./pages/Professions";
 import Advanced from "./pages/Advanced";
+import Entrepreneur from "./components/Entrepreneur";
+import Writer from "./components/Writer";
 
 export default function App() {
   return (
@@ -27,7 +29,8 @@ export default function App() {
       <Route path="/parentspage" element={<ParentsPage />}/>
       <Route path="/professions" element={<Professions />}/>
       <Route path="/about" element={<About />}/>
-      <Route path="/advanced" element={<Advanced />} />
+      <Route path="/Entrepreneur" element={<Entrepreneur />} />
+      <Route path="/Writer" element={< Writer/>} />
       {/* <Route path="/about" element={<About />} /> */}
 
       <Route path="/apitest" element={<ApiTest />} />

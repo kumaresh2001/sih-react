@@ -6,7 +6,7 @@ export const Results1 = {
     "requirements":["i)A Level English Literature","ii)International Baccalaureate Diploma Programme-40-42","iii)UCAS Tariff- 152."]},
     {"name":"St. Stephen's College(New Delhi,India )", "img":require("../assets/Stephen's.jpg"), 
     "requirements":"English Core 90% Or Elective English 85%"},
-    {"name":"Lady Shri Ram College for Women(New Delhi,India )", "img":require("../assets/LadiShri.jpg"), 
+    {"name":"Lady Shri Ram College for Women(New Delhi,India )", "img":require("../assets/LadyShri.jpg"), 
     "requirements":" Required cut off -96.5"},
     {"name":"Rabindra Bharati University (Kolkata,west Bengal)", "img":require("../assets/rabindra.jpg"), 
     "requirements":" Required cut off - 89-95"},
@@ -31,6 +31,6 @@ export const Results2 = {
     "requirements":"Entrance Exam(IPM Aptitude Test)"},
     {"name":"DeenDayal Upadhyay College, Delhi University", "img":require("../assets/Deen-Dayal.jpg"), 
     "requirements":"CUCET(Central University Common Entrance Test)"},
-    {"name":"Symbiosis Centre for Management Studies, Pune", "img":require("../assets/Symbiosis.jpg"), 
+    {"name":"Symbiosis Centre for Management Studies, Pune", "img":require("../assets/Symbiosis.jpeg"), 
     "requirements":"SET (Symbiosis Entrance Test)"}
 ]}

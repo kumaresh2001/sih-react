@@ -13,6 +13,7 @@ export class Home extends Component {
             <Carousel />
             <ComplexGrid />
             <Footer />
+            
         </React.Fragment>
     )
   }

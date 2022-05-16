@@ -68,7 +68,8 @@ export default function GridCard(props) {
           </Paper>
             
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-           {props.description}<br />
+           {props?.description}<br />
+           {props?.requirements}
            <div style={{fontWeight:"bold"}}>
              {props.specialisation?
              <React.Fragment>

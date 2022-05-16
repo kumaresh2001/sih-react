@@ -26,6 +26,9 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
+import axios  from 'axios';
+
+
 
 
 export default function NavBar(props) {
@@ -38,6 +41,17 @@ export default function NavBar(props) {
     const onOpen = () =>setOpen(true);
     const onClose = () =>setOpen(false);
     const navigate = useNavigate();
+
+    const [loginName,setLoginName] = useState("");
+    const [loginPassword,setLoginPassword] = useState("");
+
+    const [registerUserName,setRegisterUserName] = useState("");
+    const [registerName,setRegisterName] = useState("");
+    const [registerPassword,setRegisterPassword] = useState("");
+    const [registerType,setRegisterType] = useState("");
+    const [studentGrade,setStudentGrade] = useState("");
+    const [parentsWardUserName,setParentsWardUserName] = useState("");
+
     const routeChange = (path) =>{ 
       navigate(path);
     }
@@ -45,7 +59,50 @@ export default function NavBar(props) {
 
     const onChangeValue = (event)=>{
       setFirstSelectedValue(event.target.value);
+      setRegisterType(event.target.value);
     }
+
+    const handleSubmit = ()=>{
+      axios.post("http://127.0.0.1:5000/login",{"name":loginName,"password":loginPassword})
+      .then(res=>
+        {
+          console.log(res.data)
+          if(res.data.notFound)
+          {
+            alert("Username does not exists")
+            return;
+          }
+          if(res.data.password)
+          {
+            if(loginPassword==res.data.password)
+            {
+              navigate("/higherstudents");
+              return;
+            }
+            alert("Invalid Password")
+          }
+        }
+      )
+    }
+
+    const handleRegisterSubmit =()=>{
+      let submitInfo = {};
+      submitInfo.name = registerName;
+      submitInfo.userName = registerUserName;
+      submitInfo.password = registerPassword;
+      submitInfo.type = registerType;
+      if(registerType=="student")
+      {
+        submitInfo.studentGrade = studentGrade;
+      }
+      else{
+        submitInfo.parentsWardUserName = parentsWardUserName;
+      }
+      console.log(submitInfo)
+      axios.post("http://127.0.0.1:5000/register",submitInfo)
+      .then(res=>{console.log(res.data)})
+    }
+
     const style = {
         position: 'absolute',
         top: '50%',
@@ -186,14 +243,14 @@ export default function NavBar(props) {
 
             <br />
 
-          <TextField  style={{marginTop:"30px"}} id="outlined-basic" label="Username" variant="outlined" />
+          <TextField  value={loginName} onChange={(event)=>{setLoginName(event.target.value)}} style={{marginTop:"30px"}} id="outlined-basic" label="Username" variant="outlined" />
 
             <br/>
         
-        <TextField  style={{marginTop:"30px",marginBottom:"20px"}} id="outlined-basic" label="Password" variant="outlined" />
+          <TextField value={loginPassword} type={"password"} onChange={event=>{setLoginPassword(event.target.value)}} style={{marginTop:"30px",marginBottom:"20px"}} id="outlined-basic" label="Password" variant="outlined" />
 
             <br />
-            <Button variant="contained" onClick={()=>navigate("/higherstudents")} color="primary">Submit</Button>
+            <Button variant="contained" onClick={handleSubmit} color="primary">Submit</Button>
 
 
         </Box>
@@ -218,50 +275,50 @@ export default function NavBar(props) {
 
             <br />
 
-          <TextField  style={{marginTop:"30px"}} id="outlined-basic" label="Username" variant="outlined" />
+          <TextField  onChange={event=>{setRegisterUserName(event.target.value)}} style={{marginTop:"30px"}} id="outlined-basic" label="Username" variant="outlined" />
 
-          <TextField  style={{marginTop:"30px"}} id="outlined-basic" label="Name" variant="outlined" />
+          <TextField  onChange={event=>{setRegisterName(event.target.value)}} style={{marginTop:"30px"}} id="outlined-basic" label="Name" variant="outlined" />
 
             <br/>
         
-        <TextField  style={{marginTop:"30px",marginBottom:"20px"}} id="outlined-basic" label="Password" variant="outlined" />
+          <TextField  required type="password" onChange={event=>{setRegisterPassword(event.target.value)}} style={{marginTop:"30px",marginBottom:"20px"}} id="outlined-basic" label="Password" variant="outlined" />
 
-        <br />
-        <FormControl>
+          <br />
+          <FormControl >
+            
+            <RadioGroup
+              row
+              aria-labelledby="demo-row-radio-buttons-group-label"
+              name="row-radio-buttons-group"
+            >
+              <FormControlLabel  onChange={onChangeValue} value="student" control={<Radio />} label="Student" />
+              <FormControlLabel  onChange={onChangeValue} value="parent" control={<Radio />} label="Parent" />
+              
+            </RadioGroup>
           
-          <RadioGroup
-            row
-            aria-labelledby="demo-row-radio-buttons-group-label"
-            name="row-radio-buttons-group"
-          >
-            <FormControlLabel  onChange={onChangeValue} value="student" control={<Radio />} label="Student" />
-            <FormControlLabel  onChange={onChangeValue} value="parent" control={<Radio />} label="Parent" />
-            
-          </RadioGroup>
-        
-          {
-            firstSelectedValue=="student"? <RadioGroup
-            row
-            aria-labelledby="demo-row-radio-buttons-group-label"
-            name="row-radio-buttons-group"
-          >
-            <FormControlLabel value="student" control={<Radio />} label="9/10" />
-            &emsp;&emsp;
-            <FormControlLabel value="parent" control={<Radio />} label="11/12" />
-            
-          </RadioGroup>:""
-          }
+            {
+              firstSelectedValue=="student"? <RadioGroup
+              row
+              aria-labelledby="demo-row-radio-buttons-group-label"
+              name="row-radio-buttons-group"
+            >
+              <FormControlLabel onChange={event=>setStudentGrade(event.target.value)} value="9/10" control={<Radio />} label="9/10" />
+              &emsp;&emsp;
+              <FormControlLabel onChange={event=>setStudentGrade(event.target.value)} value="11/12" control={<Radio />} label="11/12" />
+              
+            </RadioGroup>:""
+            }
 
-          {
-            firstSelectedValue=="parent"?<TextField  style={{marginTop:"20px",marginBottom:"20px"}} id="outlined-basic" label="Student Username" variant="outlined" />:""
-          }
-         
+            {
+              firstSelectedValue=="parent"?<TextField onChange={event=>setParentsWardUserName(event.target.value)} style={{marginTop:"20px",marginBottom:"20px"}} id="outlined-basic" label="Student Username" variant="outlined" />:""
+            }
+          
 
 
-        </FormControl>
+          </FormControl>
 
             <br /><br />
-            <Button variant="contained" color="primary">Submit</Button>
+            <Button onClick={handleRegisterSubmit} variant="contained" color="primary">Submit</Button>
 
 
         </Box>

@@ -623,11 +623,14 @@ return(
           </Paper>
             
             <Box>
+                
                 <Box style={{display:"block"}}>
                 <Typography style={{textAlign:"center",fontSize:"1.5rem"}}>
                     Suitable Streams for you
                 </Typography>
                 </Box>
+              
+               
                 
                 <Grid  container justifyContent="space-evenly" rowSpacing={6} columnSpacing={{ xs: 4, sm: 4, md: 4 }}>
                 {
@@ -643,17 +646,19 @@ return(
             </Box>
 
             <Box>
-                <Box style={{display:"block"}}>
+          
+                <Box style={{display:"block",margin:"10px"}}>
                 <Typography style={{textAlign:"center",fontSize:"1.5rem"}}>
                     Suitable Professions for you
                 </Typography>
                 </Box>
+          
                
                 <Grid  container justifyContent="space-evenly" rowSpacing={6} columnSpacing={{ xs: 4, sm: 4, md: 4 }}>
                 {
                     this.state.profession?this.state.profession.map(item=>{return(
                     <Grid  item xs="auto">
-                        <a href="./advanced">
+                        <a href={"./"+item.name} style={{textDecoration:"none"}}>
                         <Item  >
                             <GridCard2 style={{color:"black"}} name={item.name} image={item.img} description={item.description}/>
                         </Item>

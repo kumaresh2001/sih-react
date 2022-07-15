@@ -11,6 +11,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Modal from '@mui/material/Modal';
 import Typography from '@mui/material/Typography';
+import CircularProgress from "@mui/material/CircularProgress";
 import {FormControlLabel}  from "@mui/material";
 import {RadioGroup} from "@mui/material";
 import {Radio}  from "@mui/material";
@@ -325,11 +326,10 @@ class Quiz extends Component{
         var response;
         axios({
             method: 'post',
-            url: "http://127.0.0.1:5000/",
+            url: process.env.REACT_APP_TAKE_TEST,
             headers: {}, 
-            data: {
-              answers: {answers}, // This is the body part
-            }
+            data:{"data":{"answers":answers}}, // This is the body part
+            
           }).then(res=>{
                 response = res.data;
                 //console.log(res.data);
@@ -480,12 +480,12 @@ return(
                                 <TableRow>
                                     <TableCell align="center">QUESTION</TableCell>
                                  
-                                    <TableCell colspan={3} align="right">INACCURATE</TableCell>
+                                    <TableCell colSpan={3} align="right">INACCURATE</TableCell>
                                     <TableCell></TableCell>
-                                    <TableCell colspan={3} align="center">NORMAL</TableCell>
+                                    <TableCell colSpan={3} align="center">NORMAL</TableCell>
                                     <TableCell></TableCell>
                                     
-                                    <TableCell colspan={3} align="left">ACCURATE</TableCell>
+                                    <TableCell colSpan={3} align="left">ACCURATE</TableCell>
                                     
                                 </TableRow>
                                 </TableHead>
@@ -624,25 +624,31 @@ return(
             
             <Box>
                 
-                <Box style={{display:"block"}}>
+                <Box style={{display:"block",marginTop:"20px"}}>
                 <Typography style={{textAlign:"center",fontSize:"1.5rem"}}>
                     Suitable Streams for you
                 </Typography>
                 </Box>
               
                
-                
-                <Grid  container justifyContent="space-evenly" rowSpacing={6} columnSpacing={{ xs: 4, sm: 4, md: 4 }}>
                 {
-                    this.state.stream?this.state.stream.map(item=>{return(
-                    <Grid  item xs="auto">
-                        <Item >
-                            <GridCard name={item.name} image={item.img} description={item.description}/>
-                        </Item>
-                    </Grid>)
-                    }):""
+                    this.state.stream?
+                    <Grid container justifyContent="space-evenly" rowSpacing={6} columnSpacing={{ xs: 4, sm: 4, md: 4 }}>
+                        {
+                            this.state.stream?this.state.stream.map(item=>{return(
+                                <Grid  item xs="auto">
+                                    <Item >
+                                        <GridCard name={item.name} image={item.img} description={item.description}/>
+                                    </Item>
+                                </Grid>)
+                            }):""
+                        }
+                        </Grid>
+                    :<div style={{width:"100%",marginTop:"20px",display:"flex",flexWrap:"wrap",justifyContent:"center"}}>
+                        <CircularProgress />
+                    </div>
                 }
-                </Grid>            
+                            
             </Box>
 
             <Box>
@@ -653,20 +659,30 @@ return(
                 </Typography>
                 </Box>
           
-               
-                <Grid  container justifyContent="space-evenly" rowSpacing={6} columnSpacing={{ xs: 4, sm: 4, md: 4 }}>
+               {
+                this.state.profession?
+                <Grid container justifyContent="space-evenly" rowSpacing={6} columnSpacing={{ xs: 4, sm: 4, md: 4 }}>
                 {
-                    this.state.profession?this.state.profession.map(item=>{return(
-                    <Grid  item xs="auto">
-                        <a href={"./"+item.name} style={{textDecoration:"none"}}>
-                        <Item  >
-                            <GridCard2 style={{color:"black"}} name={item.name} image={item.img} description={item.description}/>
-                        </Item>
-                        </a>
-                    </Grid>)
-                    }):""
+                    this.state.profession?this.state.profession.map(item=>{
+                        return(
+                                <Grid  item xs="auto">
+                                    <a href={"./"+item.name} style={{textDecoration:"none"}}>
+                                    <Item  >
+                                        <GridCard2 style={{color:"black"}} name={item.name} image={item.img} description={item.description}/>
+                                    </Item>
+                                    </a>
+                                </Grid>
+                            )
+                        }):""
+                        
                 }
                 </Grid>
+                :<div style={{width:"100%",marginTop:"20px",display:"flex",flexWrap:"wrap",justifyContent:"center"}}>
+                <CircularProgress />
+            </div>
+
+               }
+                
               
             </Box>
          

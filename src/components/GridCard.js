@@ -9,6 +9,7 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { Box } from '@mui/system';
 
+
 export default function GridCard(props) {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
@@ -31,14 +32,16 @@ export default function GridCard(props) {
         p: 4,
       };
 
+
   return (
       <React.Fragment>
-        <Card sx={{ maxWidth: 345 }} onClick={handleOpen} >
+        <Card  sx={{ maxWidth: 345 }} onClick={handleOpen} >
       <CardMedia
         component="img"
         height="140"
         image={props.image}
         alt="image"
+        
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">

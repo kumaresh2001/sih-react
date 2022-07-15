@@ -63,7 +63,7 @@ export default function NavBar(props) {
     }
 
     const handleSubmit = ()=>{
-      axios.post("http://127.0.0.1:5000/login",{"name":loginName,"password":loginPassword})
+      axios.post(process.env.REACT_APP_LOGIN,{"name":loginName,"password":loginPassword})
       .then(res=>
         {
           console.log(res.data)
@@ -74,7 +74,7 @@ export default function NavBar(props) {
           }
           if(res.data.password)
           {
-            if(loginPassword==res.data.password)
+            if(loginPassword===res.data.password)
             {
               navigate("/higherstudents");
               return;

@@ -20,6 +20,9 @@ import { Store } from './components/store/Store';
 import {connect} from "react-redux";
 import {mapStateToProps} from './components/store/Reducers'
 import { useEffect, useState } from 'react';
+import Contact from './pages/Contact';
+import Help from './pages/Help';
+
 
 
 function Application(props) {
@@ -42,6 +45,9 @@ function Application(props) {
                 <Route path="/about" element={<About />}/>
                 <Route path="/Entrepreneur" element={<Entrepreneur />} />
                 <Route path="/Writer" element={< Writer/>} />
+                <Route path="/help" element={<Help />} />
+                <Route path="/contact" element={<Contact />} /> 
+
   
               </Routes>
   

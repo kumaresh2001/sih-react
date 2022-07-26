@@ -1,16 +1,15 @@
 import * as React from 'react';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import { Paper } from '@mui/material';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { Box } from '@mui/system';
+import { connect } from 'react-redux/es/exports';
+import { mapStateToProps } from './store/Reducers';
 
-
-export default function GridCard(props) {
+function GridCard(props) {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -35,19 +34,18 @@ export default function GridCard(props) {
 
   return (
       <React.Fragment>
-        <Card  sx={{ maxWidth: 345 }} onClick={handleOpen} >
+        <Card color="primary" style={{border:"none",boxShadow:"none",backgroundColor:props.secondBackgroundColor}}  sx={{ maxWidth: 345 }} onClick={handleOpen} >
       <CardMedia
         component="img"
         height="140"
         image={props.image}
         alt="image"
-        
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
           {props.name}
         </Typography>
-        <Typography style={{textAlign:"justify",textJustify: "interWord"}} variant="body2" color="text.secondary">
+        <Typography style={{textAlign:"justify",textJustify: "interWord"}} variant="body2" color="text.primary">
           {props.description}
         </Typography>
       </CardContent>
@@ -60,17 +58,17 @@ export default function GridCard(props) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
+        <Box sx={{...style,backgroundColor:props.backgroundColor,border:`2px solid ${props.contrastColor}`}} >
+          <Typography style={{color:props.contrastColor}} id="modal-modal-title" variant="h6" component="h2">
             <div style={{fontWeight:"bold"}}>
             {props.name}
             </div>
           </Typography>
-          <Paper>
-            <img style={{margin:"20px",width:"50vw"}}  src={props.image} />
+          <Paper style={{border:"none",boxShadow:"none",backgroundColor:props.backgroundColor}}>
+              <img alt="" style={{margin:"20px",width:"50vw",maxWidth:"700px"}}  src={props.image} />
           </Paper>
             
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+          <Typography style={{color:props.contrastColor}} id="modal-modal-description" sx={{ mt: 2 }}>
            {props?.description}<br />
            {props?.requirements}
            <div style={{fontWeight:"bold"}}>
@@ -87,3 +85,5 @@ export default function GridCard(props) {
    
   );
 }
+
+export default connect(mapStateToProps) (GridCard);

@@ -10,7 +10,6 @@ import Box from '@mui/material/Box';
 import NavBar from '../components/NavBar';
 import ComplexGrid from '../components/Cards';
 import Quiz from "../components/Quiz"
-import { Navigate } from 'react-router-dom';
 import DomesticCards from "../components/DomesticCards"
 import Professions from "../components/Professions"
 import Footer from '../components/Footer';
@@ -48,18 +47,28 @@ function a11yProps(index) {
     'aria-controls': `full-width-tabpanel-${index}`,
   };
 }
-function redirect()
-{
-  if(!localStorage.username)
-  {
-    Navigate("/")
+
+export default class HigherStudents extends React.Component{
+  componentDidMount(){
+    if(localStorage.getItem("accessToken")==null){
+      console.log("hehes")
+      window.location.replace("http://127.0.0.1:3000/")
+    }
+    else{
+      console.log("hehe")
+    }
+  }
+  render(){
+    return <HigherStudentsFunction />
   }
 }
 
-export default function HigherStudents() {
+export  function HigherStudentsFunction(props) {
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
   const [value2,setValue2] = React.useState(0);
+
+
 
   const handleChange = (event, newValue) => {
     setValue(newValue);

@@ -4,12 +4,9 @@ import Paper from '@mui/material/Paper';
 import { Typography } from '@mui/material';
 
 
-export default function Variants() {
+export default function AboutContent() {
   return (
-    <Box
-      
-      
-    >
+    <Box>
       
       <Paper variant="outlined">
         <Typography >

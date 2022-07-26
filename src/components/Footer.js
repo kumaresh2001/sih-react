@@ -6,9 +6,9 @@ import { Typography } from "@mui/material";
 
 export default function Footer() {
     return (
-        <AppBar position="static" color="primary">
+        <AppBar style={{marginTop:"0px"}} position="static" color="primary">
           <Container maxWidth="md">
-            <Toolbar>
+            <Toolbar >
               <Typography variant="body1" color="inherit">
                 &copy; Meraki@2022
                 &emsp;&emsp;

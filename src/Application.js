@@ -15,11 +15,10 @@ import Writer from "./components/Writer";
 import { ThemeProvider } from '@mui/material';
 import {theme,darkTheme} from "./utils/theme";
 import ChatbotComponent from './components/chatbot/ChatbotComponent';
-import { Provider } from 'react-redux';
-import { Store } from './components/store/Store';
+
 import {connect} from "react-redux";
 import {mapStateToProps} from './components/store/Reducers'
-import { useEffect, useState } from 'react';
+import { useEffect, } from 'react';
 import Contact from './pages/Contact';
 import Help from './pages/Help';
 

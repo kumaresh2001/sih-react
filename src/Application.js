@@ -47,7 +47,6 @@ function Application(props) {
                 <Route path="/Writer" element={< Writer/>} />
                 <Route path="/help" element={<Help />} />
                 <Route path="/contact" element={<Contact />} /> 
-
   
               </Routes>
   

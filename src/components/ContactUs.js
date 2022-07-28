@@ -20,7 +20,7 @@ export default function ContactUs() {
         <div>
             <div className="container">
                 <h1>GET IN TOUCH WITH US</h1>
-                <p>Want to get in touch? We would love to hear from you. Here’s how you can reach us...</p>
+                <p>Want to get in touch? We would love to hear from you. Here's how you can reach us...</p>
             <form onSubmit={sendEmail}>
                     <div className="mainForm">
                         <div className="formItems">

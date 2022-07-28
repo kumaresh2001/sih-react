@@ -11,7 +11,7 @@ export class About extends Component {
 
             <NavBar />
             <ContactUs />
-            <Footer />
+            <Footer style={{position:"fixed",bottom:"0px"}} />
         
         </React.Fragment>
     )

@@ -21,6 +21,7 @@ import HelpIcon from '@mui/icons-material/Help';
 import Modal from '@mui/material/Modal';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Brightness7RoundedIcon from '@mui/icons-material/Brightness7Rounded';
+import Brightness5RoundedIcon from '@mui/icons-material/Brightness5Rounded';
 import TextField from '@mui/material/TextField';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
@@ -41,9 +42,7 @@ import { mapStateToProps } from "./store/Reducers"
 
 function NavBar(props) {
 
-    useEffect = () =>{
-
-    }
+   
 
     const [state,setState] = useState(false);
     const [open,setOpen] = useState(false);
@@ -54,6 +53,8 @@ function NavBar(props) {
     const onOpen = () =>setOpen(true);
     const onClose = () =>setOpen(false);
     const navigate = useNavigate();
+    const [path,setPath] = useState();
+
 
     const [loginName,setLoginName] = useState("");
     const [loginPassword,setLoginPassword] = useState("");
@@ -67,7 +68,18 @@ function NavBar(props) {
 
     const [themeChecked,setThemeChecked] = useState(false);
 
-    const routeChange = (path) =>{ 
+    const [windowWidth,setWindowWidth] = useState(window.innerWidth);
+
+    useEffect = () =>{
+     function resize(){
+      setWindowWidth(window.innerWidth);
+     }
+     window.addEventListener('resize',resize);
+     console.log(windowWidth)
+    }
+    
+
+    const routeChange = async (path) =>{ 
       navigate(path);
     }
     const [signin,setSignin] = useState(props.signIn);
@@ -163,42 +175,42 @@ function NavBar(props) {
           <List style={{backgroundColor:props?.backgroundColor}}>
 
               <ListItem>
-                <ListItemText style={{textAlign:"center"}}>
+                <ListItemText>
                     Meraki
                 </ListItemText>
               </ListItem>
 
                 <Divider />
 
-              <ListItem style={{marginTop:"10px"}} button onClick={()=>{navigate("/")}} key={"Home"}>
+              <ListItem style={{marginTop:"10px"}} button onClick={()=>{window.location.replace("/")}} key={"Home"}>
                 <ListItemIcon>
                     <HomeIcon  color="icon" />
                 </ListItemIcon>
                 <ListItemText primary={"Home"} />
               </ListItem>
 
-            <ListItem style={{marginTop:"10px"}} button onClick={()=>{navigate("/professions")}} key={"Professions"}>
+            <ListItem style={{marginTop:"10px"}} button onClick={()=>{window.location.replace("/professions")}} key={"Professions"}>
                 <ListItemIcon>
                     <WorkIcon  color="icon" />
                 </ListItemIcon>
                 <ListItemText primary={"Professions"} />
               </ListItem>
 
-              <ListItem style={{marginTop:"10px"}}  onClick={()=>{navigate("/about")}} button key={"About us"}>
+              <ListItem style={{marginTop:"10px"}}  onClick={()=>{window.location.replace("/about")}} button key={"About us"}>
                 <ListItemIcon>
                   <InfoIcon  color="icon" />
                 </ListItemIcon>
                 <ListItemText primary={"About Us"} />
               </ListItem>
 
-              <ListItem style={{marginTop:"10px"}} button key={"Contact"}>
+              <ListItem style={{marginTop:"10px"}} onClick={()=>{window.location.replace("/contact")}}  button key={"Contact"}>
                 <ListItemIcon>
                     <PhoneIcon  color="icon" />
                 </ListItemIcon>
                 <ListItemText primary={"Contact"} />
               </ListItem>
 
-              <ListItem style={{marginTop:"10px"}} button key={"Help"}>
+              <ListItem style={{marginTop:"10px"}} onClick={()=>{window.location.replace("/help")}} button key={"Help"}>
                 <ListItemIcon>
                     <HelpIcon  color="icon" />
                 </ListItemIcon>
@@ -223,7 +235,9 @@ function NavBar(props) {
 
 
   return (
-    <React.Fragment>
+    <React.Fragment
+    
+    >
 
     <Box sx={{ flexGrow: 1 }}>
       <AppBar  color="primary" position="static" style={{display:"flex",position:"fixed",marginBottom:"40px",top:"0px",zIndex:"3"}}>
@@ -236,35 +250,56 @@ function NavBar(props) {
             sx={{ mr: 2 }}
             onClick={toggleDrawer("left", true)}
           >
-            <MenuIcon />
+            {
+              windowWidth<1000 ? <MenuIcon /> : ""
+            }
           
           </IconButton>
 
           <img src={require("../assets/meraki-logo.png") } style={{maxWidth:"40px"}} alt="not loaded" />
 
-          <Typography onClick={()=>navigate("/")} style={{marginLeft:"15px",cursor:"pointer"}} variant="h4" component="div" sx={{ flexGrow: 6 }}>
+          <Typography onClick={()=>routeChange("/")} style={{marginLeft:"15px",cursor:"pointer"}} variant="h4" component="div" sx={{ flexGrow: 6 }}>
             Meraki
           </Typography>
 
-          <Button color="inherit" style={{fontSize:"1rem",marginRight:"30px"}} >Get Started</Button>
-          <Button color="inherit" style={{fontSize:"1rem",marginRight:"30px"}} >Help</Button>
-          <Button color="inherit" style={{fontSize:"1rem",marginRight:"30px"}} >FAQ</Button>
-
-          {
-            signin===false?<React.Fragment>
-            <Button color="inherit" style={{fontSize:"1rem",marginRight:"30px"}} onClick={setOpen}>Login</Button>
-            <Button color="inherit" style={{fontSize:"1rem"}} onClick={onRegisterOpen}>Register</Button>
+          
+            {
+             
+              windowWidth>=1000?
+                <>
+                  <Button color="inherit" onClick={()=>window.location.replace("/professions")} style={{fontSize:"1rem",marginRight:"30px"}} >Professions</Button>
+                  <Button color="inherit" onClick={()=>window.location.replace("/about")} style={{fontSize:"1rem",marginRight:"30px"}} >About</Button>
+                  <Button color="inherit" onClick={()=>window.location.replace("/contact")} style={{fontSize:"1rem",marginRight:"30px"}} >Contact</Button>
+                  <Button color="inherit" onClick={()=>window.location.replace("/help")} style={{fontSize:"1rem",marginRight:"30px"}} >Help</Button>
+                </>
+                :""
+            }{
+                
+                signin===false&&windowWidth>=1000?<React.Fragment>
+                <Button color="inherit" style={{fontSize:"1rem",marginRight:"30px"}} onClick={setOpen}>Login</Button>
+                <Button color="inherit" style={{fontSize:"1rem",marginRight:"30px"}} onClick={onRegisterOpen}>Register</Button>
+                
+                </React.Fragment>
+                :
+                signin===true?<AccountCircleIcon onClick={()=>{localStorage.removeItem("accessToken");navigate("/")}} />:""
+            }
+            {         
+                themeChecked===true&&windowWidth>=1000?
+                  <Brightness7RoundedIcon onClick={()=>{setThemeChecked(!themeChecked);Store.dispatch(toggleTheme())}}  color="icon" /> 
+                    :windowWidth>=1000?
+                  <Brightness5RoundedIcon onClick={()=>{setThemeChecked(!themeChecked);Store.dispatch(toggleTheme())}}  color="white" />:""
+            }
             
-            </React.Fragment>
-            :<AccountCircleIcon onClick={()=>{localStorage.removeItem("accessToken");navigate("/")}} />
-          }
+
+
+          
         </Toolbar>
       </AppBar>
         <div style={{height:"65px",width:"100vw"}}>
 
         </div>
 
-          <Canvas />
+          {/* <Canvas /> */}
 
 
         <Drawer

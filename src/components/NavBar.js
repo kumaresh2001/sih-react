@@ -331,7 +331,7 @@ function NavBar(props) {
 
             <br />
 
-          <TextField focused color="field"  value={loginName} onChange={(event)=>{setLoginName(event.target.value)}} style={{marginTop:"30px"}} id="outlined-basic" label="Username" variant="outlined" />
+          <TextField focused color="field"   value={loginName} onChange={(event)=>{setLoginName(event.target.value)}} style={{marginTop:"30px"}} id="outlined-basic" label="Username" variant="outlined" />
 
             <br/>
         
@@ -363,9 +363,9 @@ function NavBar(props) {
 
             <br />
 
-          <TextField focused color="field"  onChange={event=>{setRegisterUserName(event.target.value)}} style={{marginTop:"30px"}} id="outlined-basic" label="Username" variant="outlined" />
+          <TextField focused color="field" required type="text" onChange={event=>{setRegisterUserName(event.target.value)}} style={{marginTop:"30px"}} id="outlined-basic" label="Username" variant="outlined" />
 
-          <TextField focused color="field" onChange={event=>{setRegisterName(event.target.value)}} style={{marginTop:"30px"}} id="outlined-basic" label="Name" variant="outlined" />
+          <TextField focused color="field" required type="text" onChange={event=>{setRegisterName(event.target.value)}} style={{marginTop:"30px"}} id="outlined-basic" label="Name" variant="outlined" />
 
             <br/>
         

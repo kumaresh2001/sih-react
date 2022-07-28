@@ -88,6 +88,7 @@ export default function ParentsPage() {
                 </SwipeableViews>
             </Box>
             <Footer />
+            
       </React.Fragment>
 
     

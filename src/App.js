@@ -1,40 +1,56 @@
-import ReactDOM from "react-dom";
-import logo from './logo.svg';
 import './App.css';
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Link
-} from 'react-router-dom';
-import Home from "./pages/Home";
-import NavBar from "./components/NavBar";
-import HigherStudents from "./pages/HigherStudents";
-import SecondaryStudents from "./pages/SecondaryStudents";
-import ParentsPage from "./pages/ParentsPage";
-import About from "./pages/About";
-import ApiTest from "./components/ApiTest";
-import Professions from "./pages/Professions";
-import Advanced from "./pages/Advanced";
+// import {
+//   BrowserRouter as Router,
+//   Routes,
+//   Route,
+// } from 'react-router-dom';
+// import Home from "./pages/Home";
+// import HigherStudents from "./pages/HigherStudents";
+// import SecondaryStudents from "./pages/SecondaryStudents";
+// import ParentsPage from "./pages/ParentsPage";
+// import About from "./pages/About";
+// import Professions from "./pages/Professions";
+// import Entrepreneur from "./components/Entrepreneur";
+// import Writer from "./components/Writer";
 
-export default function App() {
+import ChatbotComponent from './components/chatbot/ChatbotComponent';
+import { Provider } from 'react-redux';
+import { Store } from './components/store/Store';
+// import {connect} from "react-redux";
+// import {mapStateToProps} from './components/store/Reducers'
+// import { useEffect } from 'react';
+import Application from './Application'
+
+function App(props) {
+ 
   return (
-    <Router>
-    <Routes>
-      <Route path="/" element={<Home />}/>
-      <Route path="/higherstudents" element={<HigherStudents />}/>
-      <Route path="/secondarystudents" element={<SecondaryStudents />}/>
-      <Route path="/parentspage" element={<ParentsPage />}/>
-      <Route path="/professions" element={<Professions />}/>
-      <Route path="/about" element={<About />}/>
-      <Route path="/advanced" element={<Advanced />} />
-      {/* <Route path="/about" element={<About />} /> */}
+    <>
+    <Provider store={Store}>
 
-      <Route path="/apitest" element={<ApiTest />} />
+          {/* <Router>
+            <Routes>
 
-    </Routes>
+              <Route path="/" element={<Home />}/>
+              <Route path="/higherstudents" element={<HigherStudents />}/>
+              <Route path="/secondarystudents" element={<SecondaryStudents />}/>
+              <Route path="/parentspage" element={<ParentsPage />}/>
+              <Route path="/professions" element={<Professions />}/>
+              <Route path="/about" element={<About />}/>
+              <Route path="/Entrepreneur" element={<Entrepreneur />} />
+              <Route path="/Writer" element={< Writer/>} />
 
-    </Router>
+            </Routes>
+
+          </Router> */}
+
+          <Application />
+          <ChatbotComponent />
+
+    </Provider>
+      
+    </> 
   );
 }
+
+export default App;
 

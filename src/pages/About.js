@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import NavBar from "../components/NavBar";
-import Box from "../components/Box";
+import AboutContent from "../components/AboutContent";
 import Footer from '../components/Footer';
 
 
@@ -10,7 +10,7 @@ export class About extends Component {
         <React.Fragment>
 
             <NavBar />
-            <Box />
+            <AboutContent />
             <Footer />
         
         </React.Fragment>

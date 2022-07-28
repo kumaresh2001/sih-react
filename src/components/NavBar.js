@@ -1,4 +1,4 @@
-import  React,{useState} from 'react';
+import  React,{useEffect, useState} from 'react';
 import { useNavigate } from "react-router-dom";
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -20,15 +20,31 @@ import InfoIcon from '@mui/icons-material/Info';
 import HelpIcon from '@mui/icons-material/Help';
 import Modal from '@mui/material/Modal';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import Brightness7RoundedIcon from '@mui/icons-material/Brightness7Rounded';
 import TextField from '@mui/material/TextField';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
+import axios  from 'axios';
+import { Switch } from '@mui/material';
+import Canvas from './canvas/Canvas';
+import { Store } from './store/Store';
+import { toggleTheme } from './store/Actions';
+import { connect } from 'react-redux/es/exports';
+import { mapStateToProps } from "./store/Reducers"
 
 
-export default function NavBar(props) {
+
+
+
+function NavBar(props) {
+
+    useEffect = () =>{
+
+    }
+
     const [state,setState] = useState(false);
     const [open,setOpen] = useState(false);
     const [firstSelectedValue,setFirstSelectedValue] = useState("");
@@ -38,6 +54,19 @@ export default function NavBar(props) {
     const onOpen = () =>setOpen(true);
     const onClose = () =>setOpen(false);
     const navigate = useNavigate();
+
+    const [loginName,setLoginName] = useState("");
+    const [loginPassword,setLoginPassword] = useState("");
+
+    const [registerUserName,setRegisterUserName] = useState("");
+    const [registerName,setRegisterName] = useState("");
+    const [registerPassword,setRegisterPassword] = useState("");
+    const [registerType,setRegisterType] = useState("");
+    const [studentGrade,setStudentGrade] = useState("");
+    const [parentsWardUserName,setParentsWardUserName] = useState("");
+
+    const [themeChecked,setThemeChecked] = useState(false);
+
     const routeChange = (path) =>{ 
       navigate(path);
     }
@@ -45,14 +74,65 @@ export default function NavBar(props) {
 
     const onChangeValue = (event)=>{
       setFirstSelectedValue(event.target.value);
+      setRegisterType(event.target.value);
     }
+
+    const handleSubmit = ()=>{
+      axios.post(process.env.REACT_APP_LOGIN,{"username":loginName,"password":loginPassword})
+      .then(res=>
+        {
+          console.log(res.data)
+          if(!res.data.loginStatus){
+            alert("Login Failed! Invalid username and password")
+          }
+          else{
+            localStorage.setItem("accessToken",res.data.token)
+            navigate("/secondarystudents");
+            return;
+          }
+          // if(res.data.notFound)
+          // {
+          //   alert("Invalid Username and Password")
+          //   return;
+          // }
+          // if(res.data.password)
+          // {
+          //   if(loginPassword===res.data.password)
+          //   {
+          //     navigate("/higherstudents");
+          //     return;
+          //   }
+          //   alert("Invalid Username and Password")
+          // }
+        }
+      )
+    }
+
+    const handleRegisterSubmit =()=>{
+      let submitInfo = {};
+      submitInfo.name = registerName;
+      submitInfo.userName = registerUserName;
+      submitInfo.password = registerPassword;
+      submitInfo.type = registerType;
+      if(registerType==="student")
+      {
+        submitInfo.studentGrade = studentGrade;
+      }
+      else{
+        submitInfo.parentsWardUserName = parentsWardUserName;
+      }
+      console.log(submitInfo)
+      axios.post("http://127.0.0.1:5000/register",submitInfo)
+      .then(res=>{console.log(res.data)})
+    }
+
     const style = {
         position: 'absolute',
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
         width: 400,
-        backgroundColor:"white",
+        backgroundColor:props.backgroundColor,
         border: '1px solid #000',
         borderRadius:"2px",
         paddingTop:"30px",
@@ -60,6 +140,7 @@ export default function NavBar(props) {
         textAlign:"center",
         boxShadow: 24,
         p: 4,
+        
       };
 
     const toggleDrawer = (anchor, open) => (event) => {
@@ -74,10 +155,12 @@ export default function NavBar(props) {
         <Box
           sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
           role="presentation"
-          onClick={toggleDrawer(anchor, false)}
+          onClick={toggleDrawer(anchor, true)}
           onKeyDown={toggleDrawer(anchor, false)}
+          
+          style={{backgroundColor:props.backgroundColor,height:"100% "}}
         >
-          <List>
+          <List style={{backgroundColor:props?.backgroundColor}}>
 
               <ListItem>
                 <ListItemText style={{textAlign:"center"}}>
@@ -89,38 +172,48 @@ export default function NavBar(props) {
 
               <ListItem style={{marginTop:"10px"}} button onClick={()=>{navigate("/")}} key={"Home"}>
                 <ListItemIcon>
-                    <HomeIcon />
+                    <HomeIcon  color="icon" />
                 </ListItemIcon>
                 <ListItemText primary={"Home"} />
               </ListItem>
 
             <ListItem style={{marginTop:"10px"}} button onClick={()=>{navigate("/professions")}} key={"Professions"}>
                 <ListItemIcon>
-                    <WorkIcon />
+                    <WorkIcon  color="icon" />
                 </ListItemIcon>
                 <ListItemText primary={"Professions"} />
               </ListItem>
 
               <ListItem style={{marginTop:"10px"}}  onClick={()=>{navigate("/about")}} button key={"About us"}>
                 <ListItemIcon>
-                  <InfoIcon />
+                  <InfoIcon  color="icon" />
                 </ListItemIcon>
                 <ListItemText primary={"About Us"} />
               </ListItem>
 
               <ListItem style={{marginTop:"10px"}} button key={"Contact"}>
                 <ListItemIcon>
-                    <PhoneIcon />
+                    <PhoneIcon  color="icon" />
                 </ListItemIcon>
                 <ListItemText primary={"Contact"} />
               </ListItem>
 
               <ListItem style={{marginTop:"10px"}} button key={"Help"}>
                 <ListItemIcon>
-                    <HelpIcon />
+                    <HelpIcon  color="icon" />
                 </ListItemIcon>
                 <ListItemText primary={"Help"} />
 
+              </ListItem>
+
+              <ListItem style={{position:"fixed",bottom:"0px"}}>
+                <ListItemIcon>
+                  <Brightness7RoundedIcon  color="icon" />
+                </ListItemIcon>
+                <ListItemText primary={"Theme"} />
+                <ListItem style={{float:"right",marginRight:"0px"}} > 
+                  <Switch  color="icon" checked={themeChecked} onChange={()=>{setThemeChecked(!themeChecked);Store.dispatch(toggleTheme())}}/>
+                </ListItem>
               </ListItem>
           </List>
         </Box>
@@ -133,7 +226,7 @@ export default function NavBar(props) {
     <React.Fragment>
 
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" style={{display:"flex"}}>
+      <AppBar  color="primary" position="static" style={{display:"flex",position:"fixed",marginBottom:"40px",top:"0px",zIndex:"3"}}>
         <Toolbar>
           <IconButton
             size="large"
@@ -144,26 +237,42 @@ export default function NavBar(props) {
             onClick={toggleDrawer("left", true)}
           >
             <MenuIcon />
+          
           </IconButton>
-          <Typography  style={{textAlign:"center"}} variant="h4" component="div" sx={{ flexGrow: 6 }}>
+
+          <img src={require("../assets/meraki-logo.png") } style={{maxWidth:"40px"}} alt="not loaded" />
+
+          <Typography onClick={()=>navigate("/")} style={{marginLeft:"15px",cursor:"pointer"}} variant="h4" component="div" sx={{ flexGrow: 6 }}>
             Meraki
           </Typography>
+
+          <Button color="inherit" style={{fontSize:"1rem",marginRight:"30px"}} >Get Started</Button>
+          <Button color="inherit" style={{fontSize:"1rem",marginRight:"30px"}} >Help</Button>
+          <Button color="inherit" style={{fontSize:"1rem",marginRight:"30px"}} >FAQ</Button>
+
           {
-            signin==false?<React.Fragment>
-            <Button color="inherit" style={{fontSize:"0.8rem"}} onClick={setOpen}>Login</Button>
-            <Button color="inherit" style={{fontSize:"0.8rem"}} onClick={onRegisterOpen}>Register</Button>
+            signin===false?<React.Fragment>
+            <Button color="inherit" style={{fontSize:"1rem",marginRight:"30px"}} onClick={setOpen}>Login</Button>
+            <Button color="inherit" style={{fontSize:"1rem"}} onClick={onRegisterOpen}>Register</Button>
             
             </React.Fragment>
-            :<AccountCircleIcon />
+            :<AccountCircleIcon onClick={()=>{localStorage.removeItem("accessToken");navigate("/")}} />
           }
         </Toolbar>
-        {/*hi */}
       </AppBar>
-        
+        <div style={{height:"65px",width:"100vw"}}>
+
+        </div>
+
+          <Canvas />
+
+
         <Drawer
             anchor="left"
             open={state["left"]}
             onClose={toggleDrawer("left", false)}
+            color="primary"
+            
           >
             {list("left")}
         </Drawer>
@@ -173,27 +282,28 @@ export default function NavBar(props) {
         onClose={onClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
+      
       >
         
           <Box style={style}>
-          <Typography  id="modal-modal-title" variant="h5" component="h2">
+          <Typography color={props.contrastColor} id="modal-modal-title" variant="h5" component="h2">
             Login
           </Typography>
 
             <br />
 
-          <AccountCircleIcon sx={{ fontSize: 90 }} />
+          <AccountCircleIcon color="icon" sx={{ fontSize: 90 }} />
 
             <br />
 
-          <TextField  style={{marginTop:"30px"}} id="outlined-basic" label="Username" variant="outlined" />
+          <TextField focused color="field"  value={loginName} onChange={(event)=>{setLoginName(event.target.value)}} style={{marginTop:"30px"}} id="outlined-basic" label="Username" variant="outlined" />
 
             <br/>
         
-        <TextField  style={{marginTop:"30px",marginBottom:"20px"}} id="outlined-basic" label="Password" variant="outlined" />
+          <TextField focused color="field" value={loginPassword} type={"password"} onChange={event=>{setLoginPassword(event.target.value)}} style={{marginTop:"30px",marginBottom:"20px"}} id="outlined-basic" label="Password" variant="outlined" />
 
             <br />
-            <Button variant="contained" onClick={()=>navigate("/higherstudents")} color="primary">Submit</Button>
+            <Button variant="contained" onClick={handleSubmit} color="icon">Submit</Button>
 
 
         </Box>
@@ -208,77 +318,71 @@ export default function NavBar(props) {
         aria-describedby="modal-modal-description"
       >
           <Box style={style}>
-          <Typography  id="modal-modal-title" variant="h5" component="h2">
+          <Typography color={props.contrastColor}  id="modal-modal-title" variant="h5" component="h2">
             Register
           </Typography>
 
             <br />
 
-          <AccountCircleIcon sx={{ fontSize: 70 }} />
+          <AccountCircleIcon color="icon" sx={{ fontSize: 70 }} />
 
             <br />
 
-          <TextField  style={{marginTop:"30px"}} id="outlined-basic" label="Username" variant="outlined" />
+          <TextField focused color="field"  onChange={event=>{setRegisterUserName(event.target.value)}} style={{marginTop:"30px"}} id="outlined-basic" label="Username" variant="outlined" />
 
-          <TextField  style={{marginTop:"30px"}} id="outlined-basic" label="Name" variant="outlined" />
+          <TextField focused color="field" onChange={event=>{setRegisterName(event.target.value)}} style={{marginTop:"30px"}} id="outlined-basic" label="Name" variant="outlined" />
 
             <br/>
         
-        <TextField  style={{marginTop:"30px",marginBottom:"20px"}} id="outlined-basic" label="Password" variant="outlined" />
+          <TextField focused color="field"  required type="password" onChange={event=>{setRegisterPassword(event.target.value)}} style={{marginTop:"30px",marginBottom:"20px",color:props.contrastColor}} id="outlined-basic" label="Password" variant="outlined" />
 
-        <br />
-        <FormControl>
+          <br />
+          <FormControl >
+            
+            <RadioGroup
+              row
+              aria-labelledby="demo-row-radio-buttons-group-label"
+              name="row-radio-buttons-group"
+              color="field"
+            >
+              <FormControlLabel style={{color:props.contrastColor}}  onChange={onChangeValue} value="student" control={<Radio />} label="Student" />
+              <FormControlLabel style={{color:props.contrastColor}}  onChange={onChangeValue} value="parent" control={<Radio />} label="Parent" />
+              
+            </RadioGroup>
           
-          <RadioGroup
-            row
-            aria-labelledby="demo-row-radio-buttons-group-label"
-            name="row-radio-buttons-group"
-          >
-            <FormControlLabel  onChange={onChangeValue} value="student" control={<Radio />} label="Student" />
-            <FormControlLabel  onChange={onChangeValue} value="parent" control={<Radio />} label="Parent" />
-            
-          </RadioGroup>
-        
-          {
-            firstSelectedValue=="student"? <RadioGroup
-            row
-            aria-labelledby="demo-row-radio-buttons-group-label"
-            name="row-radio-buttons-group"
-          >
-            <FormControlLabel value="student" control={<Radio />} label="9/10" />
-            &emsp;&emsp;
-            <FormControlLabel value="parent" control={<Radio />} label="11/12" />
-            
-          </RadioGroup>:""
-          }
+            {
+              firstSelectedValue==="student"? <RadioGroup
+                  row
+                  aria-labelledby="demo-row-radio-buttons-group-label"
+                  name="row-radio-buttons-group"
+                  
+                >
+              <FormControlLabel  style={{color:props.contrastColor}} color="field" onChange={event=>setStudentGrade(event.target.value)} value="9/10" control={<Radio />} label="9/10" />
+              &emsp;&emsp;
+              <FormControlLabel  style={{color:props.contrastColor}} color="field" onChange={event=>setStudentGrade(event.target.value)} value="11/12" control={<Radio />} label="11/12" />
+              
+            </RadioGroup>:""
+            }
 
-          {
-            firstSelectedValue=="parent"?<TextField  style={{marginTop:"20px",marginBottom:"20px"}} id="outlined-basic" label="Student Username" variant="outlined" />:""
-          }
-         
-
-
-        </FormControl>
+            {
+              firstSelectedValue==="parent"?<TextField focused color="field" onChange={event=>setParentsWardUserName(event.target.value)} style={{marginTop:"20px",marginBottom:"20px"}} id="outlined-basic" label="Student Username" variant="outlined" />:""
+            }
+          
+          </FormControl>
 
             <br /><br />
-            <Button variant="contained" color="primary">Submit</Button>
 
+            <Button onClick={handleRegisterSubmit} variant="contained" color="primary">Submit</Button>
 
         </Box>
 
       </Modal>
-
-
       
     </Box>
 
-   
-   
-
-      
-
     </React.Fragment>
-
 
   );
 }
+
+export default connect(mapStateToProps) (NavBar);

@@ -96,6 +96,7 @@ export default function SecondaryStudents() {
                         <Quiz />
                     </TabPanel>
                 </SwipeableViews>
+                
             </Box>
             <Footer />
       </React.Fragment>

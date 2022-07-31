@@ -48,8 +48,8 @@ form{
 input[type=text]{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 14px;
-    width: 30%;
-    height: 40px;
+    width: 60%;
+    height: 45px;
     padding: 12px 20px;
     box-sizing: border-box;
     border: 2px solid #1976D2;
@@ -61,8 +61,8 @@ input[type=text]{
 input[type=email]{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 14px;
-    width: 30%;
-    height: 40px;
+    width: 60%;
+    height: 45px;
     padding: 12px 20px;
     box-sizing: border-box;
     border: 2px solid #1976D2;
@@ -74,8 +74,8 @@ input[type=email]{
 textarea {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 14px;
-    width: 30%;
-    height: 150px;
+    width: 60%;
+    height: 160px;
     padding: 12px 20px;
     box-sizing: border-box;
     border: 2px solid #1976D2;
@@ -88,7 +88,7 @@ textarea {
 input[type=submit]{
     font-size: 14px;
     width: 15%;
-    height: 40px;
+    height: 45px;
     padding: 1px 20px;
     box-sizing: border-box;
     border: 2px solid #1976D2;
@@ -99,10 +99,39 @@ input[type=submit]{
 }
 
 input[type=submit] {
+    width: 25%;
     transition: width 0.4s ease-in-out;
   }
   
 input[type=submit]:hover {
-    width: 30%;
+    width: 40%;
     cursor: pointer;
+}
+
+.column {
+  float: left;
+  width: 50%;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.contactImage{
+    display: block;
+    margin-top: 25px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+    height: 50%;
+    padding-top: 13px;
+    transition: transform .5s;
+    border-radius: 30px;
+}
+
+.contactImage:hover {
+  transform: scale(0.9);
+  cursor: pointer;
 }

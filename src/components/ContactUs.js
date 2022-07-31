@@ -1,7 +1,8 @@
 import React from 'react';
 import emailjs from "emailjs-com";
 import "../styles/contact.css";
-import pic from "../assets/contactus.jpg"
+import pic from "../assets/contactus.jpg";
+import picNew from "../assets/contactBImg.jpg";
 export default function ContactUs() {
 
     function sendEmail(e) {
@@ -19,6 +20,9 @@ export default function ContactUs() {
 
     return(
         <div>
+            <div>
+                <img src={picNew}></img>
+            </div>
             <div className="container">
                 <h1>GET IN TOUCH</h1>
                 <p><i>Do you need help? That's what the Meraki team is for!</i></p>

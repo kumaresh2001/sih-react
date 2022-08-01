@@ -1,0 +1,91 @@
+
+  .pMain{
+    text-transform: uppercase;
+    background-image: linear-gradient(
+      -225deg,
+      #2f1d70 0%,
+      #44107a 29%,
+      #ff1361 67%,
+      #f0e929 100%
+    );
+    font-weight: 600;
+    display: inline-block;
+    font-size: 40px;
+    padding-left: 50px;
+    padding-right: 50px;
+    background-size: auto auto;
+    background-clip: border-box;
+    background-size: 200% auto;
+    color: #fff;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: animate 5s linear infinite;
+
+  }
+  
+  @keyframes animate {
+    to {
+      background-position: 200% center;
+    }
+}
+
+  img{
+    max-width: 100%;  
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size:contain;
+    position: relative;
+  }
+
+  .aboutImage{
+    display: block;
+    margin-top: 25px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+    height: 50%;
+    padding-bottom: 20px;
+    transition: transform .5s;
+    border-radius: 20%;
+}
+
+.aboutImage:hover {
+  transform: scale(0.9);
+  cursor: pointer;
+}
+
+.column1 {
+    float: left;
+    width: 50%;
+  }
+
+  .column2 {
+    float: right;
+    width: 50%;
+  }
+  
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  h1{
+    color: #341994 !important;
+    text-align: center !important;
+  }
+
+  .pSub{
+    text-align: center;
+    padding-left: 25px;
+    font-size: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: cursive;
+  }
+
+hr{
+    border-top: 3px dashed rgb(184, 184, 184);
+    width: 50%;
+}
